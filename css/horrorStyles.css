@@ -29,6 +29,10 @@ body {
 }
 .time {
     margin: 1em;
+    font-size: 1.5em;
+}
+#timeBanner {
+    margin-right: 1em;
 }
 .timeTable {
     margin: 2em;
@@ -38,8 +42,26 @@ body {
 }
 .filmList {
     list-style: none;
+    font-size: 1.5em;
+    margin: 1em 0.1em;
+}
+.filmList li {
+    border: 2px solid black;
+}
+.container {
+    font-size: 1.5em;
+    margin: 1em 0.1em;
+}
+.space {
+    height: 75%;
+}
+.highLight {
+    border: 2px solid green;
+}
+.thumbnail-large {
+    overflow: hidden;
 }
 .thumbnail-large img {
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 30%;
+    max-height: 30%;
 }
