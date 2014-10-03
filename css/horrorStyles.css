@@ -45,18 +45,22 @@ body {
     font-size: 1.5em;
     margin: 1em 0.1em;
 }
-.filmList li {
-    border: 2px solid black;
-}
 .container {
     font-size: 1.5em;
-    margin: 1em 0.1em;
+    margin: 1em 0em;
 }
 .space {
-    height: 75%;
+    height: 26em;
+}
+.noHighlight {
+    border: 2px solid black;
 }
 .highLight {
     border: 2px solid green;
+}
+.verticalPadding {
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 .thumbnail-large {
     overflow: hidden;
@@ -64,4 +68,10 @@ body {
 .thumbnail-large img {
     max-width: 30%;
     max-height: 30%;
+}
+.paddingSmall {
+    padding-top: 1em;
+}
+.padOut {
+    padding-top: 10%;
 }

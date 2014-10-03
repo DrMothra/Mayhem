@@ -40,43 +40,56 @@
             </p>
         </div>
         <div class="timeTable">
-            <ul>
-                <li class="filmList" id="film1">
+            <ul class="filmList ">
+                <li id="film1">
                     <div class="pure-g">
                         <div class="pure-u-1-3">
-                            The Exorcist
+                            <span id="film1name"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            31 : 10 : 22 : 00
+                            <span id="film1time"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            LIVE
+                            <span id="film1status"></span>
                         </div>
                     </div>
                 </li>
-                <li class="filmList" id="film2">
+                <li id="film2">
                     <div class="pure-g">
                         <div class="pure-u-1-3">
-                            The Texas Chainsaw Massacre
+                            <span id="film2name"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            31 : 10 : 23 : 45
+                            <span id="film2time"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            PENDING
+                            <span id="film2status"></span>
                         </div>
                     </div>
                 </li>
-                <li class="filmList" id="film3">
+                <li id="film3">
                     <div class="pure-g">
                         <div class="pure-u-1-3">
-                            The Sound of Music
+                            <span id="film3name"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            01 : 11 : 08 : 00
+                            <span id="film3time"></span>
                         </div>
                         <div class="pure-u-1-3">
-                            PENDING
+                            <span id="film3status"></span>
+                        </div>
+                    </div>
+                </li>
+                <li id="film4">
+                    <div class="pure-g">
+                        <div class="pure-u-1-3">
+                            <span id="film4name"></span>
+                        </div>
+                        <div class="pure-u-1-3">
+                            <span id="film4time"></span>
+                        </div>
+                        <div class="pure-u-1-3">
+                            <span id="film4status"></span>
                         </div>
                     </div>
                 </li>
@@ -84,30 +97,25 @@
         </div>
         <div class="pure-g">
             <div class="pure-u-3-5">
-                <div class="synopsis">
-                    <p>A visiting actress in Washington, D.C., notices dramatic and dangerous changes
-                        in the behavior and physical make-up of her 12-year-old daughter. Meanwhile, a
-                        young priest at nearby Georgetown University begins to doubt his faith while
-                        dealing with his mother's terminal sickness. And, book-ending the story, a frail,
-                        elderly priest recognizes the necessity for a show-down with an old demonic enemy.
-                    </p>
-                </div>
+                <p id="filmSynopsis" class="padOut">
+                    Click film to see synopsis
+                </p>
             </div>
             <div class="pure-u-2-5 thumbnail-large">
-                <img src="images/exorcist.jpg">
+                <img id="thumbnail" src="images/blankFilm.jpg">
             </div>
         </div>
         <div class="pure-g">
             <div class="pure-u-4-5 container">
-                <span>The Exorcist</span>
+                <span id="filmName">Click to see film</span>
             </div>
             <div class="pure-u-1-5 container">
-                <span>Live</span>
+                <span id="filmStatus">Click to see status</span>
             </div>
         </div>
         <div class="tweets">
-            <p>
-                This film is soo scary!!!
+            <p id="tweetText">
+                Click on film to see live updates
             </p>
         </div>
     </div>
