@@ -45,12 +45,14 @@ body {
     font-size: 1.5em;
     margin: 1em 0.1em;
 }
-.container {
-    font-size: 1.5em;
-    margin: 1em 0em;
+.paddingSmall {
+    padding: 5%;
 }
-.space {
-    height: 26em;
+.paddingLarge {
+    padding: 10%;
+}
+.container {
+    width: 90%;
 }
 .noHighlight {
     border: 2px solid black;
@@ -69,9 +71,17 @@ body {
     max-width: 30%;
     max-height: 30%;
 }
-.paddingSmall {
-    padding-top: 1em;
+.arrows {
+    width: 2%;
+    padding-top: 1%;
 }
-.padOut {
-    padding-top: 10%;
+.arrows img {
+    width: 80%;
+    height: 80%;
+    display: block;
 }
+.link {
+    position: absolute;
+    top: 75%;
+}
+

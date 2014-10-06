@@ -87,8 +87,8 @@ function highlightFilm(filmId) {
 function updateSynopsis(filmId) {
     //Update film synopsis
     var synop = $('#filmSynopsis');
-    synop.removeClass('padOut');
-    synop.addClass('paddingSmall');
+    //synop.removeClass('padOut');
+    //synop.addClass('paddingSmall');
     synop.html(filmSynopses[currentFilmNum]);
 }
 
