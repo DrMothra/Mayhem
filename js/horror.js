@@ -27,23 +27,27 @@ var films = (function() {
     var defaultTweetText = 'Live text updates from the film screening will appear once this film has started';
 
     //Set up record for each film and store
-    var record;
-    for (var i = 0; i < TOTAL_FILMS; ++i) {
-        record = { name: filmNames[i], time: filmTimes[i], status: filmStatus[i], synopsis: filmSynopses[i]};
-        filmRecords.push(record);
-    }
-    //Populate page
-    var id;
-    for (var i = 1; i <= TOTAL_FILMS; ++i) {
-        id = 'film' + i;
-        for (var j = 0; j < filmElements.length; ++j) {
-            var filmElem = id + filmElements[j];
-            $('#' + filmElem).html(filmRecords[i - 1][filmElements[j]]);
-        }
-    }
+
 
     //Public access to these
     return {
+        setupFilms: function() {
+            var record;
+            for (var i = 0; i < TOTAL_FILMS; ++i) {
+                record = { name: filmNames[i], time: filmTimes[i], status: filmStatus[i], synopsis: filmSynopses[i]};
+                filmRecords.push(record);
+            }
+            //Populate page
+            var id;
+            for (var i = 1; i <= TOTAL_FILMS; ++i) {
+                id = 'film' + i;
+                for (var j = 0; j < filmElements.length; ++j) {
+                    var filmElem = id + filmElements[j];
+                    $('#' + filmElem).html(filmRecords[i - 1][filmElements[j]]);
+                }
+            }
+        },
+
         highlightFilm: function (filmId) {
             //Highlight given film
             if (currentFilmId != null) {
@@ -98,7 +102,9 @@ var films = (function() {
 
         updateStatus: function(display) {
             //Update title and status
-            var filmNum = display != undefined ? display : currentFilmNum;
+            var filmNum = display != undefined ? (display ? ++displayFilmNum : --displayFilmNum) : currentFilmNum;
+            if(displayFilmNum < 0) filmNum = displayFilmNum = TOTAL_FILMS -1;
+            if(displayFilmNum >= TOTAL_FILMS) filmNum = displayFilmNum = 0;
             if(filmNum == currentFilmNum) displayFilmNum = currentFilmNum;
             if(filmNum != null) {
                 var record = filmRecords[filmNum];
@@ -138,10 +144,45 @@ function updateClock() {
     $('#minute').html(minutes);
 }
 
+//Init this app from base
+function Horror() {
+    BaseApp.call(this);
+}
+
+Horror.prototype = new BaseApp();
+
+Horror.prototype.init = function(container) {
+    BaseApp.prototype.init.call(this, container);
+};
+
+Horror.prototype.createScene = function() {
+    //Load brain model
+    this.modelLoader = new THREE.OBJLoader();
+    var _this = this;
+
+
+    this.modelLoader.load( 'models/newBrain.obj', function ( object ) {
+
+        _this.scene.add( object );
+        _this.loadedModel = object;
+
+    } );
+    //Init base createsScene
+    BaseApp.prototype.createScene.call(this);
+};
+
+Horror.prototype.update = function update() {
+    BaseApp.prototype.update.call(this);
+};
+
+
 $(document).ready(function() {
     //Update current time (every 30 secs should do)
     updateClock();
     setInterval(updateClock, 1000*30);
+
+    //Set everything up
+    films.setupFilms();
 
     $('.filmList li').addClass('noHighlight');
 
@@ -155,18 +196,21 @@ $(document).ready(function() {
     });
 
     $('#upArrow').on('click', function(evt) {
-        if(--displayFilmNum < 0) displayFilmNum = TOTAL_FILMS-1;
-        updateStatus(displayFilmNum);
+        films.updateStatus(false);
     });
 
     $('#downArrow').on('click', function(evt) {
-        if(++displayFilmNum >= TOTAL_FILMS) displayFilmNum = 0;
-        updateStatus(displayFilmNum);
+        films.updateStatus(true);
     });
 
     //Select first film
     $('#film1').trigger('click');
 
     //Set up visualisation
+    var container = document.getElementById("WebGL-output");
+    var app = new Horror();
+    app.init(container);
+    app.createScene();
 
+    app.run();
 });

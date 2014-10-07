@@ -169,7 +169,7 @@ BaseApp.prototype.createControls = function() {
 
 BaseApp.prototype.update = function() {
     //Do any updates
-    //this.controls.update();
+    this.controls.update();
 };
 
 BaseApp.prototype.run = function(timestamp) {
