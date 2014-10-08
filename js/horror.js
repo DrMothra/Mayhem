@@ -19,8 +19,8 @@ var films = (function() {
             "Hammer horror with Christopher Lee and Barbera Shelley where four travellers go on holiday to" +
             "Transylvania......"];
 
-    var filmNames = ['The Exorcist', 'The Texas Chainsaw Massacre', 'The Sound of Music', 'Dracula : Prince of Darkness'];
-    var filmTimes = ['31 : 10 : 22 : 00', '31 : 10 : 23 : 45', '01 : 11 : 20 : 00', '01 : 11 : 22 : 00'];
+    var filmNames = ['===> The Exorcist', 'The Texas Chainsaw Massacre', 'The Sound of Music', 'Dracula : Prince of Darkness'];
+    var filmTimes = ['31/10 22:00', '31/10 23:45', '01/11 20:00', '01/11 22:00'];
     var filmStatus = ['LIVE', 'PENDING', 'PENDING', 'PENDING'];
     var filmRecords = [];
     var filmElements = ['name', 'time', 'status'];
@@ -188,7 +188,7 @@ $(document).ready(function() {
 
     //Highlighting
     $('.filmList li').on('click', function(evt) {
-        films.highlightFilm(evt.currentTarget.id);
+        //films.highlightFilm(evt.currentTarget.id);
         films.updateSynopsis();
         films.updateThumbnail();
         films.updateStatus();
@@ -207,10 +207,12 @@ $(document).ready(function() {
     $('#film1').trigger('click');
 
     //Set up visualisation
+    /*
     var container = document.getElementById("WebGL-output");
     var app = new Horror();
     app.init(container);
     app.createScene();
 
     app.run();
+    */
 });

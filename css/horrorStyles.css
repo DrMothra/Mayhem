@@ -26,10 +26,29 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'impact_labelregular';
+    src: url('../fonts/Impact_Label-webfont.eot');
+    src: url('../fonts/Impact_Label-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Impact_Label-webfont.woff') format('woff'),
+    url('../fonts/Impact_Label-webfont.ttf') format('truetype'),
+    url('../fonts/Impact_Label-webfont.svg#impact_labelregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Impact_Label_Rev';
+    src: url('../fonts/Impact_Label_Reversed.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: #000000;
     color: #28ae18;
     font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
+    background-image: url('../images/metal.jpg');
 }
 .pure-g [class *="pure-u"] {
     font-family: 'Unibody8ProReg';
@@ -37,8 +56,37 @@ body {
 .unibody {
     font-family: 'Unibody8ProReg';
 }
+.dymo {
+    font-family: 'impact_labelregular';
+}
+.dymoRev {
+    font-family: 'Impact_Label_Rev';
+}
+.blueText {
+    color: #285fff;
+}
+.redText {
+    color: #ff1a26;
+}
+.blackText {
+    color: #000000;
+}
+.whiteText {
+    color: #ffffff;
+}
 .centred {
     text-align: center;
+}
+.rotate90 {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 .time {
     margin: 1em;
@@ -47,8 +95,14 @@ body {
 #timeBanner {
     margin-right: 1em;
 }
+.sideColumn {
+    margin-left: 5%;
+}
 .timeTable {
-    margin: 2em;
+    padding: 0 1em;
+}
+#topTitle {
+    padding-top: 2%;
 }
 .synopsis {
     padding: 2em;
@@ -66,8 +120,11 @@ body {
     list-style: none;
     margin: 1em 0.1em;
 }
+.padTop {
+    padding-top: 5%;
+}
 .paddingSmall {
-    padding: 1% 0%;
+    padding-top: 3%;
 }
 .paddingLarge {
     padding: 10%;
@@ -78,7 +135,7 @@ body {
     margin-right: auto;
 }
 .noHighlight {
-    border: 2px solid black;
+    padding-left: 5em;
 }
 .highLight {
     border: 2px solid green;
@@ -108,8 +165,10 @@ body {
     width: 90%;
     height: 90%;
 }
-.backGround {
+.darkBackground {
     background-image: url("../images/background.png");
     background-size: 7%;
 }
-
+#buttonLabel {
+    min-width: 200px;
+}
