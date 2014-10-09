@@ -92,6 +92,10 @@ body {
     -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
+.spacer {
+    width: 100%;
+    padding: 3% 0;
+}
 .fontSmaller {
     font-size: 0.8em;
 }
@@ -137,18 +141,44 @@ body {
 .filmList {
     list-style: none;
 }
-.align {
-    display: inline;
+.rightAlign {
+    float: right;
 }
-
+.rightIndent {
+    padding-right: 3%;
+}
+.newLine {
+    display: block;
+}
+.align {
+    overflow: hidden;
+}
+.align img{
+    vertical-align: middle;
+}
 .led img {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.2em;
+    height: 1.2em;
 }
 .grid img {
-    display: block;
     margin: 2px;
+}
+.rounded {
+    border-radius: 5px;
+}
+#dates {
+    float: right;
+    margin-right: 3%;
+}
+#listings {
+    margin-left: 15%;
 }
 #synopsisLabel {
     margin: 2%;
+}
+#topTitle {
+    margin-bottom: 1%;
+}
+#statusLabel {
+    margin-bottom: 1%;
 }
