@@ -19,7 +19,7 @@ var films = (function() {
             "Hammer horror with Christopher Lee and Barbera Shelley where four travellers go on holiday to" +
             "Transylvania......"];
 
-    var filmNames = ['===> The Exorcist', 'The Texas Chainsaw Massacre', 'The Sound of Music', 'Dracula : Prince of Darkness'];
+    var filmNames = ['===> The Exorcist', 'The Texas Chainsaw', 'The Sound of Music', 'Count Dracula'];
     var filmTimes = ['31/10 22:00', '31/10 23:45', '01/11 20:00', '01/11 22:00'];
     var filmStatus = ['LIVE', 'PENDING', 'PENDING', 'PENDING'];
     var filmRecords = [];

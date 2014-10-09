@@ -50,6 +50,11 @@ body {
     font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
     background-image: url('../images/metal.jpg');
 }
+.wrapper {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
 .pure-g [class *="pure-u"] {
     font-family: 'Unibody8ProReg';
 }
@@ -79,8 +84,8 @@ body {
 }
 .rotate90 {
     position: absolute;
-    top: 100px;
-    left: 50px;
+    top: 7%;
+    left: 0;
 
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -171,4 +176,10 @@ body {
 }
 #buttonLabel {
     min-width: 200px;
+}
+.pushButton img {
+    display: inline;
+    width: 10%;
+    height: 10%;
+    vertical-align: middle;
 }
