@@ -156,6 +156,9 @@ function Horror() {
 Horror.prototype = new BaseApp();
 
 Horror.prototype.init = function(container) {
+    //Animation
+    this.rotInc = Math.PI/200;
+
     BaseApp.prototype.init.call(this, container);
 };
 
@@ -176,6 +179,9 @@ Horror.prototype.createScene = function() {
 };
 
 Horror.prototype.update = function update() {
+    //Rotate brain model
+    this.loadedModel != null ? this.loadedModel.rotation.y += this.rotInc : null;
+
     BaseApp.prototype.update.call(this);
 };
 
@@ -211,12 +217,10 @@ $(document).ready(function() {
     $('#film1').trigger('click');
 
     //Set up visualisation
-    /*
-    var container = document.getElementById("WebGL-output");
+    var container = document.getElementById("WebGL-Output");
     var app = new Horror();
     app.init(container);
     app.createScene();
 
     app.run();
-    */
 });
