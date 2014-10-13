@@ -45,25 +45,40 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 body {
-    background-color: #000000;
     color: #28ae18;
     font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
-    background-image: url('../images/metal.jpg');
-}
-.wrapper {
-    width: 70%;
-    margin-right: auto;
-    margin-left: auto;
+    background-image: url('../images/metalMesh.jpg');
+    background-size: 100%;
 }
 .pure-g [class *="pure-u"] {
     font-family: 'Unibody8ProReg';
 }
+.centreWrapper {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Additional widths */
+.width-1-10 {
+    width: 10%;
+}
+.width-2-10 {
+    width: 20%;
+}
+.width-3-10 {
+    width: 30%;
+}
+.width-7-10 {
+    width: 70%;
+}
 .unibody {
     font-family: 'Unibody8ProReg';
+    letter-spacing: normal;
 }
 .dymo {
     font-family: 'impact_labelregular';
     letter-spacing: normal;
+    font-style: normal;
 }
 .dymoRev {
     font-family: 'Impact_Label_Rev';
@@ -95,10 +110,6 @@ body {
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
 }
-.spacer {
-    width: 100%;
-    padding: 3% 0;
-}
 .fontSmaller {
     font-size: 0.8em;
 }
@@ -129,10 +140,15 @@ body {
     background-image: url("../images/background.png");
     background-size: 7%;
 }
-.pushButton img {
-    display: inline;
-    width: 10%;
-    height: 10%;
+#currentTime {
+    padding: 1% 1% 1% 15%;
+}
+#day {
+    padding-left: 15%;
+}
+#pushButton {
+    width: 80%;
+    height: 80%;
     vertical-align: middle;
 }
 .mainContainer {
@@ -180,6 +196,22 @@ body {
 }
 .zones {
     margin-right: 3%;
+}
+.badges img {
+    padding-left: 3%;
+}
+#boltHead1 {
+    width: 35%;
+    height: 35%;
+}
+#boltHead2 {
+    width: 20%;
+    height: 20%;
+}
+#mayhemLogo {
+    width: 40%;
+    height: 80%;
+    padding-bottom: 2%;
 }
 #synopsisContainer {
     width: 100%;

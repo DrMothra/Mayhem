@@ -21,218 +21,88 @@
     <link href="css/horrorStyles.css?v=0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="pure-g wrapper">
-    <div class="spacer">
-
+<div class="pure-g centreWrapper">
+    <img src="images/ThrillLaboratory.png">
+    <img id="mayhemLogo" src="images/Mayhem.png">
+    <div class="centred">
+        <img src="images/duality.png">
     </div>
-    <div class="pure-u-5-6">
-        <div id="topTitle" class="dymo blueText">
-            <span id="listings">FILM LISTINGS</span><span id="dates">DD/MM HH:MM</span>
-        </div>
-        <div id="timeTable" class="timeTable darkBackground rounded">
-            <ul class="filmList fontNormal">
-                <li id="film1">
-                    <div class="pure-g fontMedium">
-                        <div class="pure-u-3-5">
-                            <span id="film1name"></span>
-                        </div>
-                        <div class="pure-u-2-5">
-                            <span id="film1time" class="rightAlign rightIndent"></span>
-                        </div>
-                    </div>
-                </li>
-                <li id="film2">
-                    <div class="pure-g fontMedium">
-                        <div class="pure-u-3-5">
-                            <span id="film2name"></span>
-                        </div>
-                        <div class="pure-u-2-5 rightAlign">
-                            <span id="film2time" class="rightAlign rightIndent"></span>
-                        </div>
-                    </div>
-                </li>
-                <li id="film3">
-                    <div class="pure-g fontMedium">
-                        <div class="pure-u-3-5">
-                            <span id="film3name"></span>
-                        </div>
-                        <div class="pure-u-2-5 rightAlign">
-                            <span id="film3time" class="rightAlign rightIndent"></span>
-                        </div>
-                    </div>
-                </li>
-                <li id="film4">
-                    <div class="pure-g fontMedium">
-                        <div class="pure-u-3-5">
-                            <span id="film4name"></span>
-                        </div>
-                        <div class="pure-u-2-5 rightAlign">
-                            <span id="film4time" class="rightAlign rightIndent"></span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div id="synopsisContainer">
-            <span id="synopsisLabel" class="dymo blueText">FILM SYNOPSIS</span>
-        </div>
-
-        <div id="synopsis" class="darkBackground rounded">
-            <p>
-                True-crime writer Ellison Oswalt
-                moves himslef and his family into a
-                house...
-            </p>
-        </div>
-        <div id="selectedContainer">
-            <span id="selected" class="dymo blueText">SELECTED FILM TITLE</span>
-        </div>
-
-        <div class="pure-g">
-            <div class="pure-u-4-5">
-                <div id="selectedTitle" class="darkBackground rounded">
-                    <span>The Exorcist</span>
-                </div>
-            </div>
-            <div class="pure-u-1-5">
-                <span id="selectedStatus" class="dymo blueText">STATUS</span>
-            </div>
-        </div>
-    </div>
-    <div class="pure-u-1-6">
-        <div id="statusLabel" class="dymo blueText">
-            <span>STATUS</span>
-        </div>
-        <div class="pure-g led grid">
-            <div>
-                <span>
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                    <img src="images/circle.png">
-                </span>
-            </div>
-        </div>
-        <div class="align rotate90">
-            <div class="dymo greenText led">
-                <span><img src="images/circle.png"> PENDING LIVE PENDING</span>
-            </div>
-            <div class="dymo greenText led">
-                <span><img src="images/circle.png"> LIVE LIVE</span>
-            </div>
-            <div class="dymo greenText led">
-                <span><img src="images/circle.png"> LIVE LIVE</span>
-            </div>
-        </div>
-    </div>
-    <div class="pure-u-1-1">
-        <div id="twitterLabel" class="dymo blueText centred">
-            <span>LIVE TWITTER FEED FROM FILM SCREENING</span>
-        </div>
-        <div id="twitterContent" class="darkBackground rounded">
-            <p>
-                True crime writer Ellison Oswalt moves himself
-                and his family into a house where
-            </p>
-        </div>
-        <div id="brainLabel" class="dymo blueText">
-            <span>SUBJECT'S LIVE BRAIN ACTIVITY</span>
-        </div>
-        <div id="WebGL-Output">
-
-        </div>
-
-        <div id="lights" class="led lights">
-            <span>
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-                <img src="images/circleBlue.png">
-            </span>
-        </div>
-    </div>
-
-    <div class="dymo greenText rotateClock90 zones">
-        <span>AF3</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>F7</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>F3</span>
-    </div>
-    <div class="dymo greenText rotateClock90 zones">
-        <span>F05</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>T7</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>P7</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>O1</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>O2</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>PB</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>TB</span>
-    </div>
-    <div class="dymo greenText rotateClock90 zones">
-        <span>F06</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>F4</span>
-    </div>
-    <div class="dymo greenText zones">
-        <span>F8</span>
-    </div>
-    <div class="dymo greenText rotateClock90 zones">
-        <span>AF4</span>
-    </div>
-    <div class="pure-u-1-1">
-        <div id="describeLabel" class="dymo blueText centred">
-            <span>DESSCRIPTION OF ACTIVE BRAIN ZONES</span>
-        </div>
-        <div class="darkBackground">
-
-        </div>
-    </div>
-
 </div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img id="boltHead1" src="images/HexHead.png">
+    </div>
+    <div class="width-7-10 dymo blueText">
+        <span id="listings">FILM LISTINGS</span><span id="dates">DD/MM HH:MM</span>
+    </div>
+    <div class="width-2-10">
+        <img id="boltHead2" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g unibody">
+    <div class="width-1-10">
+        <img id="pushButton" src="images/button.png">
+    </div>
+    <div class="width-7-10 darkBackground rounded">
+        <span id="currentTime">
+            CURRENT TIME GMT
+            <span id="day"></span>
+            <span id="month"></span>
+            <span id="hour"></span>
+            <span id="minute"></span>
+        </span>
+        <ul class="filmList fontNormal">
+            <li id="film1">
+                <div class="pure-g fontMedium">
+                    <div class="pure-u-3-5">
+                        <span id="film1name"></span>
+                    </div>
+                    <div class="pure-u-2-5">
+                        <span id="film1time" class="rightAlign rightIndent"></span>
+                    </div>
+                </div>
+            </li>
+            <li id="film2">
+                <div class="pure-g fontMedium">
+                    <div class="pure-u-3-5">
+                        <span id="film2name"></span>
+                    </div>
+                    <div class="pure-u-2-5 rightAlign">
+                        <span id="film2time" class="rightAlign rightIndent"></span>
+                    </div>
+                </div>
+            </li>
+            <li id="film3">
+                <div class="pure-g fontMedium">
+                    <div class="pure-u-3-5">
+                        <span id="film3name"></span>
+                    </div>
+                    <div class="pure-u-2-5 rightAlign">
+                        <span id="film3time" class="rightAlign rightIndent"></span>
+                    </div>
+                </div>
+            </li>
+            <li id="film4">
+                <div class="pure-g fontMedium">
+                    <div class="pure-u-3-5">
+                        <span id="film4name"></span>
+                    </div>
+                    <div class="pure-u-2-5 rightAlign">
+                        <span id="film4time" class="rightAlign rightIndent"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="width-1-10 dymo blueText">
+        Status
+    </div>
+    <div class="width-1-10 dymo redText">
+        About
+    </div>
+</div>
+
 </body>
 </html>
