@@ -29,7 +29,7 @@
 
 <div class="pure-g">
     <div class="width-1-10">
-        <img id="leftBolt" class="boltHead" src="images/HexHead.png">
+        <img class="boltHead boltIt" src="images/HexHead.png">
     </div>
     <div class="width-7-10 dymo blueText">
         <span class="text fontMedium" id="listings">FILM LISTINGS</span><span class="text fontMedium" id="dates">DD/MM HH:MM</span>
@@ -42,7 +42,7 @@
 <div class="pure-g unibody">
 
     <div class="width-1-10">
-        <div id="pushButton" class="rotateButton">
+        <div id="pushButton1" class="rotateButton pushButton">
             <img src="images/button.png">
             <span class="text dymo redText"><- CHANGE FILM</span>
         </div>
@@ -178,7 +178,7 @@
     </div>
 
     <div class="width-1-10">
-        <div id="aboutButton" class="rotateAbout">
+        <div id="aboutButton1" class="aboutButton rotateAbout">
             <img src="images/ButtonDown.png">
             <span class="text dymo redText">ABOUT</span>
         </div>
@@ -188,36 +188,481 @@
 
 <div class="pure-g">
     <div class="width-1-10">
-        <div id="leftBolt2">
+        <div class="boltIt">
             <img class="boltHead" src="images/HexHead.png">
         </div>
     </div>
 
     <div class="width-7-10">
-        <div id="labelContainer">
+        <div id="synopsisContainer">
             <span id="synopsisLabel" class="text dymo blueText fontMedium">FILM SYNOPSIS</span>
         </div>
+
+        <div id="synopsis" class="darkBackground rounded unibody">
+            <p id="synopsisText">
+                True-crime writer Ellison Oswalt
+                moves himslef and his family into a
+                house where a horrific crime took place
+                earlier, but...
+            </p>
+        </div>
     </div>
 
     <div class="width-1-10">
-        <div id="longLabels" class="dymo led greenText">
-            <img src="images/GreenOff.png">
-            <span class="text">LIVE</span>
-            <span id="longLabelLive" class="greenFill"> </span>
-            <span class="text">LIVE</span>
 
+        <img class="boltHead" src="images/HexHead.png">
+
+        <div class="shiftLeft rotateLabels">
+            <div id="longLabelGreen" class="dymo led">
+                <img class="status" src="images/GreenOff.png">
+                <span class="text">LIVE</span>
+                <span class="greenFill longLabel"> </span>
+                <span class="text">LIVE</span>
+            </div>
+            <div id="longLabelOrange" class="dymo led">
+                <img class="status" src="images/AmberOff.png">
+                <span class="text">WAIT</span>
+                <span class="orangeFill longLabel"> </span>
+                <span class="text">WAIT</span>
+            </div>
+            <div id="longLabelRed" class="dymo led">
+                <img class="status" src="images/RedOff.png">
+                <span class="text">ENDED</span>
+                <span id="labelEnded" class="redFill"> </span>
+                <span class="text">ENDED</span>
+            </div>
         </div>
 
     </div>
 
     <div class="width-1-10">
-        <div id="brainButton" class="rotateBrain">
+        <div id="brainButton1" class="brainButton">
             <img src="images/ButtonDown.png">
             <span class="text dymo redText">BRAIN</span>
         </div>
     </div>
 </div>
 
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+
+    <div class="width-7-10">
+
+        <img id="brainSchedule" src="images/brain.png">
+
+        <div class="dymo blueText fontMedium centred">
+            <span class="text">SELECTED FILM TITLE</span>
+        </div>
+    </div>
+
+    <div class="width-2-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+
+    </div>
+
+    <div class="width-7-10">
+        <div id="selectedTitleContainer">
+            <span id="selectedTitle" class="darkBackground smallRounded unibody">===>The Exorcist</span>
+            <span id="selectedStatus" class="text dymo blueText fontMedium">STATUS</span>
+        </div>
+    </div>
+
+    <div class="width-2-10">
+
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+
+    <div class="pure-u-4-5">
+        <div id="twitterLabel">
+            <span class="text dymo blueText fontMedium">LIVE TWITTER FEED FROM FILM SCREENING</span>
+        </div>
+    </div>
+
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <div id="pushButton2" class="pushButton">
+            <img src="images/button.png">
+            <span class="text dymo redText"><- CHANGE FILM</span>
+        </div>
+    </div>
+
+    <div class="pure-u-4-5">
+        <div id="twitterContent" class="darkBackground rounded">
+            <p>
+                Twitter nonsense, twitter nonsense, twitter nonsense
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+
+    <div class="pure-u-4-5">
+        <div id="activityLabel">
+            <span class="text dymo blueText fontMedium">SUBJECT'S LIVE BRAIN ACTIVITY</span>
+        </div>
+    </div>
+
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <div id="pushButton3" class="pushButton">
+            <img src="images/button.png">
+            <span class="text dymo redText"><- CHANGE FILM</span>
+        </div>
+    </div>
+    <div class="pure-u-4-5">
+        <div id="WebGL-Output">
+
+        </div>
+    </div>
+    <div class="width-1-10">
+        <div id="scheduleButton1" class="scheduleButton">
+            <span class="text dymo redText">FILM SCHEDULE</span>
+            <img src="images/ButtonUp.png">
+        </div>
+
+        <div id="aboutButton2" class="aboutButton">
+            <img src="images/ButtonDown.png">
+            <span class="text dymo redText">ABOUT</span>
+        </div>
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+    <div class="pure-u-4-5">
+        <div id="lights" class="led lights">
+            <span>
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+                <img src="images/GreenOff.png">
+            </span>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+
+<div class="pure-g">
+    <div class="width-1-10">
+
+    </div>
+    <div class="pure-u-4-5">
+        <div id="zoneContainer">
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">AF3</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F3</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">FC5</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">T7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">P7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">O1</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">O2</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">P8</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">T8</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">FC6</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F4</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F8</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">AF4</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="width-1-10">
+
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+    <div class="pure-u-4-5">
+        <div id="activeLabel" class="centred">
+            <span class="text dymo blueText fontMedium">DESCRIPTION OF ACTIVE BRAIN ZONES</span>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+
+    </div>
+    <div class="pure-u-4-5">
+        <div id="describeContainer" class="darkBackground rounded unibody">
+            <div class="pure-g">
+                <div class="width-1-10">
+                    <span id="zoneId" class="unibody">T7</span>
+                </div>
+                <div class="width-1-10">
+                    <div class="chart">
+                        <div id="vertBar">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-4-5">
+                    <p>
+                        Visual categorisation: putting unknown things
+                        into known categories 'what are you doing with that
+                        cheese grater? Sweet Jesus, NO!'
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="width-1-10">
+
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+    <div class="pure-u-4-5">
+        <div id="relativeLabel" class="centred">
+            <span class="text dymo blueText fontMedium">RELATIVE BRAIN ACTIVITY FOR THIS FILM</span>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <div id="pushButton4" class="pushButton">
+            <img src="images/button.png">
+            <span class="text dymo redText"><- CHANGE FILM</span>
+        </div>
+    </div>
+    <div class="pure-u-4-5">
+        <div id="relativeContent" class="darkBackground rounded chart">
+            <div id="vertBar2" class="">
+
+            </div>
+        </div>
+    </div>
+    <div class="width-1-10">
+
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+        <img class="boltHead boltIt" src="images/HexHead.png">
+    </div>
+    <div class="pure-u-4-5">
+        <div id="zoneContainer2">
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">AF3</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F3</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">FC5</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">T7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">P7</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">O1</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">O2</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">P8</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">T8</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">FC6</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F4</span>
+            </div>
+            <div class="zones">
+                <span class="text dymo greenText">F8</span>
+            </div>
+            <div class="zones rotateAntiClock90">
+                <span class="text dymo greenText">AF4</span>
+            </div>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <img class="boltHead" src="images/HexHead.png">
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-10">
+
+    </div>
+    <div class="pure-u-4-5">
+        <div id="aboutLabelContainer">
+            <img id="scheduleBrain" src="images/schedule.png">
+            <span id="aboutLabel" class="text dymo orangeText fontMedium">ABOUT THIS EXPERIMENT</span>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <div id="brainButton2" class="brainButton">
+            <span class="text dymo redText">BRAIN</span>
+            <img src="images/ButtonUp.png">
+        </div>
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="width-1-20">
+
+    </div>
+    <div class="width-17-20">
+        <div id="bottomLabel1">
+            <span class="text dymo blueText fontMedium">PRODUCED BY THRILL LABORATORY FOR MAYHEM HORROR</span>
+        </div>
+        <div id="bottomLabel2">
+            <span class="text dymo blueText fontMedium">FILM FESTIVAL. A SUBJECT'S BRAIN IS BEING MONITORED</span>
+        </div>
+        <div id="bottomLabel3">
+            <span class="text dymo blueText fontMedium">PRODUCED BY THRILL LABORATORY FOR MAYHEM HORROR</span>
+        </div>
+        <div id="bottomLabel4">
+            <span class="text dymo blueText fontMedium">FILM FESTIVAL. A SUBJECT'S BRAIN IS BEING MONITORED</span>
+        </div>
+
+        <div id="bottomLabel5">
+            <span class="text dymo blueText fontMedium">PRODUCED BY THRILL LABORATORY FOR MAYHEM HORROR</span>
+        </div>
+        <div id="bottomLabel6">
+            <span class="text dymo blueText fontMedium">FILM FESTIVAL. A SUBJECT'S BRAIN IS BEING MONITORED</span>
+        </div>
+        <div id="bottomLabel7">
+            <span class="text dymo blueText fontMedium">PRODUCED BY THRILL LABORATORY FOR MAYHEM HORROR</span>
+        </div>
+        <div id="bottomLabel8">
+            <span class="text dymo blueText fontMedium">FILM FESTIVAL. A SUBJECT'S BRAIN IS BEING MONITORED</span>
+        </div>
+    </div>
+    <div class="width-1-10">
+        <div id="scheduleButton2" class="scheduleButton">
+            <span class="text dymo redText">FILM SCHEDULE</span>
+            <img src="images/ButtonUp.png">
+        </div>
+    </div>
+</div>
+
+<div class="pure-g">
+    <div class="pure-u-1-5">
+
+    </div>
+    <div class="pure-u-3-5">
+        <div class="pure-g">
+            <div id="allBadges">
+                <div class="pure-u-1-3">
+                    <div id="badgeContainer1">
+                        <img id="badge1" src="images/PATpassed.png">
+                    </div>
+                </div>
+
+                <div class="pure-u-1-3">
+                    <div id="badgeContainer2">
+                        <img id="badge2" src="images/Failed.png">
+                    </div>
+                </div>
+
+                <div class="pure-u-1-3">
+                    <div id="badgeContainer3">
+                        <img id="badge3" src="images/broadway.png">
+                        <img id="badge4" src="images/horizon.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pure-u-1-5">
+
+    </div>
+
+</div>
 
 </body>
 </html>

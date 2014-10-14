@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     vertical-align: baseline;
 }
 
+/* Fonts */
 @font-face {
     font-family: 'Unibody8ProReg';
     src: url('../fonts/Unibody8Pro-Regular.otf');
@@ -40,6 +41,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-style: normal;
 }
 
+/* Main classes */
 body {
     background-color: #ffffff;
     color: #82ba05;
@@ -48,11 +50,16 @@ body {
     background-size: 100%;
     font-size: 1em;
 }
+.darkBackground {
+    background-image: url("../images/background.png");
+    background-size: 7%;
+}
 .pure-g [class *="pure-u"] {
     font-family: 'Unibody8ProReg';
 }
 .centreWrapper {
     width: 70%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -69,9 +76,17 @@ body {
 .width-7-10 {
     width: 70%;
 }
+.width-1-20 {
+    width: 5%;
+}
+.width-17-20 {
+    width: 85%;
+}
 .fullWidth {
     width: 100%;
 }
+
+/* Text stuff */
 .unibody {
     font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
     letter-spacing: normal;
@@ -104,6 +119,17 @@ body {
 .centred {
     text-align: center;
 }
+.fontSmaller {
+    font-size: 0.8em;
+}
+.fontNormal {
+    font-size: 1em;
+}
+.fontMedium {
+    font-size: 1.2em;
+}
+
+/* Rotations */
 .rotate90 {
     transform-origin: 66.5% 14.5%;
 
@@ -112,6 +138,10 @@ body {
 .rotateClock90 {
     transform-origin: 50% 50%;
     transform: rotate(90deg);
+}
+.rotateAntiClock90 {
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
 }
 .rotateButton {
     transform-origin: 17.5% 85.9%;
@@ -124,84 +154,146 @@ body {
     transform-origin: 70% 76.5%;
     transform: rotate(-90deg);
 }
-.rotateBrain {
-    transform-origin: 57% 55%;
-    transform: rotate(-90deg);
-}
-.fontSmaller {
-    font-size: 0.8em;
-}
-.fontNormal {
-    font-size: 1em;
-}
-.fontMedium {
-    font-size: 1.2em;
-}
+
+/* Padding */
 .paddingSmall {
-    padding-top: 3%;
+    padding-left: 3%;
 }
 .paddingLarge {
     padding: 10%;
 }
-.container {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.noHighlight {
-    padding-left: 5em;
-}
-.highLight {
-    border: 2px solid green;
-}
-.darkBackground {
-    background-image: url("../images/background.png");
-    background-size: 7%;
-}
-#currentTime {
-    padding-left: 15%;
-    padding-right: 1%;
-}
-#day {
-    padding-left: 15%;
-}
-#pushButton {
-    padding-left: 5%;
-    padding-top: 180%;
-    margin-right: -175%;
-}
-#pushButton img {
-    width: 25%;
-    height: 25%;
-    vertical-align: middle;
-}
-#aboutButton {
-    margin-left: -100%;
-    padding-top: 60%;
-}
-#aboutButton img {
-    width: 35%;
-    height: 35%;
-    vertical-align: middle;
-}
-#brainButton {
-    margin-left: -60%;
-    padding-top: 20%;
-}
-#brainButton img {
-    width: 45%;
-    height: 45%;
-    vertical-align: middle;
-}
-#longLabels {
-    margin-left: -250%;
-}
+
+/* Containers */
 .mainContainer {
     width: 60%;
 }
 .statusContainer {
     width: 20%;
 }
+.container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Highlighting selected items */
+.noHighlight {
+    padding-left: 4em;
+}
+.highLight {
+    border: 2px solid green;
+}
+
+/* Date */
+#currentTime {
+    padding-left: 10%;
+    padding-right: 1%;
+}
+#day {
+    padding-left: 15%;
+}
+
+/* Buttons */
+.pushButton {
+
+}
+.pushButton img {
+    width: 25%;
+    height: 25%;
+    vertical-align: middle;
+}
+#pushButton1 {
+    padding-top: 180%;
+    padding-left: 5%;
+    margin-right: -175%;
+}
+#pushButton2 {
+    padding-left: 15%;
+    margin-right: -200%;
+
+    transform-origin: 16.9% 50%;
+    transform: rotate(-90deg);
+}
+#pushButton3 {
+    padding-top: 450%;
+    padding-left: 10%;
+    margin-right: -200%;
+
+    transform-origin: 14.2% 92%;
+    transform: rotate(-90deg);
+}
+#pushButton4 {
+    padding-top: 90%;
+    padding-left: 15%;
+    margin-right: -190%;
+
+    transform-origin: 14.2% 77.7%;
+    transform: rotate(-90deg);
+}
+.aboutButton {
+
+}
+.aboutButton img {
+    width: 35%;
+    height: 35%;
+    vertical-align: middle;
+}
+#aboutButton1 {
+    margin-left: -100%;
+    padding-top: 60%;
+}
+#aboutButton2 {
+    margin-left: -70%;
+    padding-top: 300%;
+
+    transform-origin: 70.3% 93%;
+    transform: rotate(-90deg);
+}
+.scheduleButton {
+
+}
+.scheduleButton img {
+    width: 27%;
+    height: 27%;
+    vertical-align: middle;
+}
+#scheduleButton1 {
+    margin-left: -155%;
+
+    transform-origin: 76.2% 50%;
+    transform: rotate(-90deg);
+}
+#scheduleButton2 {
+    padding-top: 30%;
+    margin-left: -165%;
+
+    transform-origin: 77% 60%;
+    transform: rotate(-90deg);
+}
+.brainButton {
+
+}
+.brainButton img {
+    width: 45%;
+    height: 45%;
+    vertical-align: middle;
+}
+#brainButton1 {
+    margin-left: -60%;
+    padding-top: 20%;
+
+    transform-origin: 57% 55%;
+    transform: rotate(-90deg);
+}
+#brainButton2 {
+    margin-left: -60%;
+    padding-top: 10%;
+
+    transform-origin: 62.5% 50%;
+    transform: rotate(-90deg);
+}
+
+/* Timetable */
 .filmList {
     list-style: none;
     margin-top: 3%;
@@ -210,24 +302,20 @@ body {
 .filmList li {
     line-height: 125%;
 }
+
 .rightAlign {
     float: right;
 }
 .rightIndent {
     padding-right: 7%;
 }
-.newLine {
-    display: block;
-}
-.align {
-    margin-left: -170%;
-}
-.align img{
-    vertical-align: middle;
-}
+
 .led img {
     width: 1em;
     height: 1em;
+}
+.status {
+    margin-right: 2px;
 }
 .grid img {
     margin-bottom: 2px;
@@ -242,27 +330,42 @@ body {
 .rounded {
     border-radius: 10px;
 }
+.smallRounded {
+    border-radius: 5px;
+}
 .lightLabels {
     display: inline;
 }
 .zones {
-    margin-right: 3%;
+    display: inline-block;
+    padding: 0 1.05%;
 }
-.badges img {
-    padding-left: 3%;
+#zoneContainer {
+    margin-left: 4%;
+    margin-bottom: 2%;
 }
+#zoneContainer2 {
+    margin-left: 4%;
+    margin-bottom: 2%;
+}
+#zoneId {
+    padding-left: 15%;
+}
+#relativeContent {
+    margin-bottom: 1%;
+}
+
 .hide {
     overflow: hidden;
 }
 #duality {
     width: 60%;
     height: 45%;
+    padding-left: 3%;
 }
-#leftBolt,
-#leftBolt2 {
+.boltIt {
     padding-left: 55%;
 }
-
 .boltHead {
     width: 25px;
     height: 25px;
@@ -272,15 +375,20 @@ body {
     font-size: 1.6em;
     vertical-align: middle;
 }
+.orangeFill {
+    background: #fc6a04;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+.redFill {
+    background: #b10000;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
 #mayhemLogo {
     width: 40%;
     height: 80%;
-    padding-bottom: 2%;
-}
-#synopsisContainer {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 0.5%;
+    padding-top: 3%;
 }
 #selectedContainer {
     margin-bottom: 0.35%;
@@ -288,9 +396,12 @@ body {
 #selected {
     padding-left: 1%;
 }
+#selectedTitleContainer {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
 #selectedTitle {
-    padding-left: 3%;
-    margin-bottom: 4%;
+    padding: 0 40% 0 1%;
 }
 #dates {
     float: right;
@@ -300,24 +411,53 @@ body {
     margin-left: 15%;
 }
 #synopsis {
-    padding: 0 3%;
-    margin-bottom: 7%;
+    padding: 2% 5%;
+    margin-bottom: 1.5%;
+    margin-right: 2%;
+}
+#synopsisText {
+    line-height: 125%;
+}
+#synopsisContainer {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2%;
+    margin-bottom: 1.75%;
 }
 #synopsisLabel {
     float: right;
     margin-right: 3%;
 }
-#longLabelLive {
+.shiftLeft {
+    margin-left: -250%;
+}
+#longLabelGreen {
+    color: #006a00;
+}
+#longLabelOrange {
+    color: #fc6a04;
+}
+#longLabelRed {
+    color: #b10000;
+}
+.rotateLabels {
+    transform-origin: 77% 30%;
+    transform: rotate(-90deg);
+}
+#labelEnded {
+    padding-left: 42%;
+}
+.longLabel {
     padding-left: 50%;
 }
 #topTitle {
     margin-bottom: 1%;
 }
 #statusLabel {
-    margin-bottom: 10%
+    margin-bottom: 30%
 }
 #selectedStatus {
-    margin-left: 40%;
+    margin-left: 5%;
 }
 #timeTitle {
     padding-top: 1%;
@@ -332,7 +472,7 @@ body {
     margin-top: 2%;
 }
 #twitterLabel {
-    margin-bottom: 0.5%;
+    padding-left: 3%;
 }
 #twitterContent {
     padding: 0 1%;
@@ -346,4 +486,101 @@ body {
 }
 #describeLabel {
     margin-top: 2%;
+}
+#describeContainer {
+    margin-bottom: 2%;
+}
+#brainSchedule {
+    margin-left: 5%;
+    width: 75%;
+    height: 50%;
+}
+#scheduleBrain {
+    display: block;
+    margin-left: 5%;
+    width: 75%;
+    height: 60%;
+}
+#activityLabel {
+    padding-left: 3%;
+}
+#aboutLabel {
+    margin-left: 5%;
+}
+#aboutLabelContainer {
+    margin-bottom: 2%;
+}
+/* Bottom blue text */
+#bottomLabel1,
+#bottomLabel5 {
+    margin-bottom: 1%;
+    margin-left: 7%;
+    transform: rotate(-2deg);
+}
+#bottomLabel2,
+#bottomLabel6 {
+    margin-bottom: 2%;
+    margin-left: 2%;
+    transform: rotate(-2deg);
+}
+#bottomLabel3,
+#bottomLabel7 {
+    margin-bottom: 5%;
+    margin-left: 7%;
+    transform: rotate(-3deg);
+}
+#bottomLabel4,
+#bottomLabel8 {
+    margin-bottom: 5%;
+    margin-left: 3%;
+    transform: rotate(2deg);
+}
+#badge1 {
+    width: 240%;
+}
+#badgeContainer1 {
+    margin-left: 70%;
+
+    transform-origin: 95% 50%;
+    transform: rotate(-5deg);
+}
+#badge2 {
+    width: 90%;
+}
+#badgeContainer2 {
+    margin-left: 0%;
+
+    transform-origin: 45% 55%;
+    transform: rotate(-55deg);
+}
+#badge3 {
+    width: 65%;
+    height: 40%;
+}
+#badgeContainer3 {
+    margin-left: -30%;
+
+    transform-origin: 30% 55%;
+    transform: rotate(-5deg);
+}
+#badge4 {
+    width: 65%;
+    height: 75%;
+}
+#allBadges {
+    margin-top: 3%;
+}
+#vertBar {
+    background: #a1ff2f;
+    height: 4em;
+    vertical-align: bottom;
+}
+#vertBar2 {
+    width: 5%;
+    height: 25%;
+    background: #a1ff2f;
+    height: 2em;
+}
+.chart {
+    padding: 10% 5% 5% 5%;
 }

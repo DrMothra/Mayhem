@@ -216,12 +216,12 @@ $(document).ready(function() {
     $('#film1').trigger('click');
 
     //Set up visualisation
-    /*
+
     var container = document.getElementById("WebGL-Output");
     var app = new Horror();
     app.init(container);
     app.createScene();
 
     app.run();
-    */
+
 });
