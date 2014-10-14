@@ -8,7 +8,6 @@
 //Film related stuff
 var films = (function() {
     //Private stuff
-    var TOTAL_FILMS = 4;
     var currentFilmId = null;
     var currentFilmNum = null;
     var displayFilmNum = 0;
@@ -23,15 +22,15 @@ var films = (function() {
             "Hammer horror with Christopher Lee and Barbera Shelley where four travellers go on holiday to" +
             "Transylvania......"];
 
-    var filmNames = ['The Exorcist', 'Frankensteins Mon', 'The Sound of Music', 'Count Dracula'];
-    var filmTimes = ['31/10 22:00', '31/10 23:45', '01/11 20:00', '01/11 22:00'];
-    var filmStatus = ['LIVE', 'PENDING', 'PENDING', 'PENDING'];
+    var filmNames = ['The Exorcist', 'Frankensteins Mon', 'The Sound of Music', 'Count Dracula', 'Bambi', 'Airplane'];
+    var filmTimes = ['31/10 22:00', '31/10 23:45', '01/11 20:00', '01/11 22:00','01/11 20:00', '01/11 22:00'];
+    var filmStatus = ['LIVE', 'PENDING', 'PENDING', 'PENDING','PENDING', 'PENDING'];
     var filmRecords = [];
     var filmElements = ['name', 'time', 'status'];
     var defaultTweetText = 'Live text updates from the film screening will appear once this film has started';
 
     //Set up record for each film and store
-
+    var TOTAL_FILMS = filmNames.length;
 
     //Public access to these
     return {
@@ -217,10 +216,12 @@ $(document).ready(function() {
     $('#film1').trigger('click');
 
     //Set up visualisation
+    /*
     var container = document.getElementById("WebGL-Output");
     var app = new Horror();
     app.init(container);
     app.createScene();
 
     app.run();
+    */
 });

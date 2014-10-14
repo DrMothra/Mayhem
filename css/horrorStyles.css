@@ -28,11 +28,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 @font-face {
     font-family: 'impact_labelregular';
-    src: url('../fonts/Impact_Label-webfont.eot');
-    src: url('../fonts/Impact_Label-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Impact_Label-webfont.woff') format('woff'),
-    url('../fonts/Impact_Label-webfont.ttf') format('truetype'),
-    url('../fonts/Impact_Label-webfont.svg#impact_labelregular') format('svg');
+    src: url('../fonts/Impact_Label.woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -45,10 +41,12 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 body {
-    color: #28ae18;
+    background-color: #ffffff;
+    color: #82ba05;
     font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
     background-image: url('../images/metalMesh.jpg');
     background-size: 100%;
+    font-size: 1em;
 }
 .pure-g [class *="pure-u"] {
     font-family: 'Unibody8ProReg';
@@ -71,23 +69,25 @@ body {
 .width-7-10 {
     width: 70%;
 }
+.fullWidth {
+    width: 100%;
+}
 .unibody {
-    font-family: 'Unibody8ProReg';
+    font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
     letter-spacing: normal;
 }
 .dymo {
-    font-family: 'impact_labelregular';
+    font-family: 'impact_labelregular', Helvetica, Arial, sans-serif;
     letter-spacing: normal;
-    font-style: normal;
 }
-.dymoRev {
-    font-family: 'Impact_Label_Rev';
+.text {
+    background: #ffffff;
 }
 .blueText {
     color: #285fff;
 }
 .redText {
-    color: #ff1a26;
+    color: #b10000;
 }
 .blackText {
     color: #000000;
@@ -96,7 +96,10 @@ body {
     color: #ffffff;
 }
 .greenText {
-    color: #389727;
+    color: #006a00;
+}
+.orangeText {
+    color: #fc6a04;
 }
 .centred {
     text-align: center;
@@ -108,6 +111,21 @@ body {
 }
 .rotateClock90 {
     transform-origin: 50% 50%;
+    transform: rotate(90deg);
+}
+.rotateButton {
+    transform-origin: 17.5% 85.9%;
+    transform: rotate(-90deg);
+}
+.rotateStatus {
+    transform: rotate(-20deg);
+}
+.rotateAbout {
+    transform-origin: 70% 76.5%;
+    transform: rotate(-90deg);
+}
+.rotateBrain {
+    transform-origin: 57% 55%;
     transform: rotate(-90deg);
 }
 .fontSmaller {
@@ -141,15 +159,42 @@ body {
     background-size: 7%;
 }
 #currentTime {
-    padding: 1% 1% 1% 15%;
+    padding-left: 15%;
+    padding-right: 1%;
 }
 #day {
     padding-left: 15%;
 }
 #pushButton {
-    width: 80%;
-    height: 80%;
+    padding-left: 5%;
+    padding-top: 180%;
+    margin-right: -175%;
+}
+#pushButton img {
+    width: 25%;
+    height: 25%;
     vertical-align: middle;
+}
+#aboutButton {
+    margin-left: -100%;
+    padding-top: 60%;
+}
+#aboutButton img {
+    width: 35%;
+    height: 35%;
+    vertical-align: middle;
+}
+#brainButton {
+    margin-left: -60%;
+    padding-top: 20%;
+}
+#brainButton img {
+    width: 45%;
+    height: 45%;
+    vertical-align: middle;
+}
+#longLabels {
+    margin-left: -250%;
 }
 .mainContainer {
     width: 60%;
@@ -159,12 +204,17 @@ body {
 }
 .filmList {
     list-style: none;
+    margin-top: 3%;
+    font-size: 1.1em;
+}
+.filmList li {
+    line-height: 125%;
 }
 .rightAlign {
     float: right;
 }
 .rightIndent {
-    padding-right: 3%;
+    padding-right: 7%;
 }
 .newLine {
     display: block;
@@ -176,11 +226,12 @@ body {
     vertical-align: middle;
 }
 .led img {
-    width: 1.2em;
-    height: 1.2em;
+    width: 1em;
+    height: 1em;
 }
 .grid img {
-    margin: 2px;
+    margin-bottom: 2px;
+    margin-right: 4px;
 }
 .lights img {
     margin: 0 1.5%;
@@ -189,7 +240,7 @@ body {
     padding-left: 5%;
 }
 .rounded {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .lightLabels {
     display: inline;
@@ -200,13 +251,26 @@ body {
 .badges img {
     padding-left: 3%;
 }
-#boltHead1 {
-    width: 35%;
-    height: 35%;
+.hide {
+    overflow: hidden;
 }
-#boltHead2 {
-    width: 20%;
-    height: 20%;
+#duality {
+    width: 60%;
+    height: 45%;
+}
+#leftBolt,
+#leftBolt2 {
+    padding-left: 55%;
+}
+
+.boltHead {
+    width: 25px;
+    height: 25px;
+}
+.greenFill {
+    background: #006a00;
+    font-size: 1.6em;
+    vertical-align: middle;
 }
 #mayhemLogo {
     width: 40%;
@@ -241,19 +305,31 @@ body {
 }
 #synopsisLabel {
     float: right;
-    padding-right: 1%;
+    margin-right: 3%;
+}
+#longLabelLive {
+    padding-left: 50%;
 }
 #topTitle {
     margin-bottom: 1%;
 }
 #statusLabel {
-    margin-bottom: 1%;
+    margin-bottom: 10%
 }
 #selectedStatus {
     margin-left: 40%;
 }
+#timeTitle {
+    padding-top: 1%;
+}
 #timeTable {
-    margin-bottom: 2%;
+    padding-right: 1.5%;
+    padding-bottom: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+#labelContainer {
+    margin-top: 2%;
 }
 #twitterLabel {
     margin-bottom: 0.5%;
