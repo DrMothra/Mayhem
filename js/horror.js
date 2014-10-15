@@ -162,29 +162,73 @@ Horror.prototype = new BaseApp();
 Horror.prototype.init = function(container) {
     //Animation
     this.rotInc = Math.PI/200;
+    this.sightVector = new THREE.Vector3(0, 0, 0.5);
 
     BaseApp.prototype.init.call(this, container);
 };
 
 Horror.prototype.createScene = function() {
+    //Init base createsScene
+    BaseApp.prototype.createScene.call(this);
+
+    //Create grid
+    var plane = new THREE.PlaneGeometry(300, 300);
+    var texture = THREE.ImageUtils.loadTexture("images/gridNegativeHole.png");
+    var planeMat = new THREE.MeshBasicMaterial( {map: texture, transparent: true, opacity: 0.5});
+    var gridMesh = new THREE.Mesh(plane, planeMat);
+    gridMesh.scale.set(1.0, 0.95, 1.0);
+    gridMesh.position.z = -175;
+    gridMesh.name = 'sight';
+    //Add this to camera
+    this.camera.add(gridMesh);
+    this.scene.add(this.camera);
+
     //Load brain model
     this.modelLoader = new THREE.OBJLoader();
     var _this = this;
 
+    //Test objects
+    var sphere = new THREE.SphereGeometry(10);
+    var sphereMat = new THREE.MeshLambertMaterial( {color: 0xff0000});
+    var sphereMesh = new THREE.Mesh(sphere, sphereMat);
+    sphereMesh.name = 'redBall';
+    this.scene.add(sphereMesh);
 
+    sphereMat = new THREE.MeshLambertMaterial( {color: 0x0000ff});
+    sphereMesh = new THREE.Mesh(sphere, sphereMat);
+    sphereMesh.position.x = 40;
+    sphereMesh.name = 'blueBall';
+    this.scene.add(sphereMesh);
+    /*
     this.modelLoader.load( 'models/newBrain.obj', function ( object ) {
 
         _this.scene.add( object );
         _this.loadedModel = object;
 
     } );
-    //Init base createsScene
-    BaseApp.prototype.createScene.call(this);
+    */
 };
 
 Horror.prototype.update = function update() {
+    //See if anything in sight
+    this.sightVector.x = this.sightVector.y = 0;
+    this.sightVector.z = 0.5;
+    this.projector.unprojectVector(this.sightVector, this.camera);
+    var raycaster = new THREE.Raycaster(this.camera.position, this.sightVector.sub(this.camera.position).normalize());
+    this.hoverObjects.length = 0;
+    this.hoverObjects = raycaster.intersectObjects(this.scene.children, true);
+
+    //Check hover actions
+    if(this.hoverObjects.length != 0) {
+        console.log('Hit something =', this.hoverObjects[1].name);
+    }
+
     //Rotate brain model
-    this.loadedModel != null ? this.loadedModel.rotation.y += this.rotInc : null;
+    /*
+    if(this.loadedModel) {
+        this.loadedModel.rotation.y += this.rotInc
+    }
+    */
 
     BaseApp.prototype.update.call(this);
 };

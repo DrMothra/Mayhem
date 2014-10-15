@@ -58,6 +58,9 @@ BaseApp.prototype.createRenderer = function() {
     this.container.addEventListener('mousemove', function(event) {
         _this.mouseMoved(event);
     }, false);
+    $(document).keydown(function(event) {
+        _this.keydown(event);
+    });
     window.addEventListener('resize', function(event) {
         _this.windowResize(event);
     }, false);
@@ -77,6 +80,9 @@ BaseApp.prototype.keydown = function(event) {
                 }
             }
             break;
+        case 80: //'P'
+            console.log('Cam =', this.camera.position);
+            console.log('Look =', this.controls.getLookAt());
     }
 };
 
