@@ -11,20 +11,20 @@ var films = (function() {
     var currentFilmId = null;
     var currentFilmNum = null;
     var displayFilmNum = 0;
+    var LIVE = 0;
+    var WAIT = 1;
+    var ENDED = 2;
 
-    var filmSynopses = ["A visiting actress in Washington, D.C., notices dramatic and dangerous changes" +
-        "in the behavior and physical make-up of her 12-year-old daughter. Meanwhile, a" +
-        "young priest at nearby Georgetown University begins to doubt his faith while" +
-        "dealing with his mother's terminal sickness. And, book-ending the story, a frail," +
-        "elderly priest recognizes the necessity for a show-down with an old demonic enemy.",
-        "A big massacre with a chain saw and blood and stuff",
-        "The hills are alive, etc., etc.",
-            "Hammer horror with Christopher Lee and Barbera Shelley where four travellers go on holiday to" +
-            "Transylvania......"];
+    var filmSynopses = ["A super stylish slasher from the creators of Paranormal Activity and American Horror Story, playing like a cross between Zodiac and Scream.",
+        "40th Anniversary screening of the horror masterpiece from Tobe Hooper that asks: 'who will survive, and what will be left of them?'",
+        "Gory body horror mixed with satirical supernatural scares in this tale of making it big in Hollywood whatever the cost to your soul.",
+            "Forced by the courts to return to live with her mum, a young criminal learns that her childhood home may be haunted... or worse.",
+        "Animated adventure: from the traumatic murder of Bambi's mother at the hands of hunters, to his jubilant ascension as Prince of the Forest.",
+        "This uproarious comedy spoof of the Airport series of disaster movies is full of quotable lines and slapstick gags that endure to this day."];
 
-    var filmNames = ['The Exorcist', 'Frankensteins Mon', 'The Sound of Music', 'Count Dracula', 'Bambi', 'Airplane'];
+    var filmNames = ['The Town that Dreaded Sundown', 'The Texas Chainsaw Massacre', 'Starry Eyes', 'Housebound', 'Walt Disneys Bambi', 'Airplane!'];
     var filmTimes = ['31/10 22:00', '31/10 23:45', '01/11 20:00', '01/11 22:00','01/11 20:00', '01/11 22:00'];
-    var filmStatus = ['LIVE', 'PENDING', 'PENDING', 'PENDING','PENDING', 'PENDING'];
+    var filmStatus = [LIVE, WAIT, WAIT, WAIT, ENDED, ENDED];
     var filmRecords = [];
     var filmElements = ['name', 'time', 'status'];
     var defaultTweetText = 'Live text updates from the film screening will appear once this film has started';
@@ -53,15 +53,14 @@ var films = (function() {
 
         highlightFilm: function (filmId) {
             //Highlight given film
+            if(filmId == null) return;
+
             if (currentFilmId != null) {
-                var elem = $('#' + currentFilmId);
-                elem.removeClass('highLight');
-                elem.addClass('noHighlight');
+                var elem = $('#selector' + currentFilmId);
             }
             currentFilmId = filmId;
-            elem = $('#' + filmId);
-            elem.removeClass('noHighlight');
-            elem.addClass('highLight');
+            elem = $('#selector' + filmId);
+            elem.html('==>');
             var film = filmId.indexOf('film');
             if (film >= 0) {
                 currentFilmNum = parseInt(filmId.substr(film + 4, 1));
@@ -73,49 +72,55 @@ var films = (function() {
             }
         },
 
-        updateSynopsis: function(filmId) {
+        updateSelectedFilm: function () {
+            if(currentFilmNum == null) return;
+
+            var elem = $('#selectedTitle');
+            elem.html('==>' + filmNames[currentFilmNum]);
+        },
+
+        removeCurrentHighlight: function () {
+            //Remove current film selection
+            if(currentFilmId == null) return;
+
+            var elem = $('#selector' + currentFilmId);
+            elem.html('');
+        },
+
+        updateFilm: function() {
+            //Highlight film
+            if(currentFilmNum == null) return null;
+            if(++currentFilmNum >= TOTAL_FILMS) currentFilmNum = 0;
+            displayFilmNum = currentFilmNum +1;
+            currentFilmId = 'film'+displayFilmNum;
+
+            return currentFilmId;
+        },
+        updateSynopsis: function() {
             //Update film synopsis
-            var synop = $('#filmSynopsis');
-            //synop.removeClass('padOut');
-            //synop.addClass('paddingSmall');
+            var synop = $('#synopsisText');
             synop.html(filmSynopses[currentFilmNum]);
         },
 
-        updateThumbnail: function() {
-            //Update film image
-            var image = $('#thumbnail');
-            switch(currentFilmId) {
-                case 'film1':
-                    image.attr('src', 'images/exorcist.jpg');
-                    break;
-                case 'film2':
-                    image.attr('src', 'images/texas.jpg');
-                    break;
-                case 'film3':
-                    image.attr('src', 'images/sound.jpg');
-                    break;
-                case 'film4':
-                    image.attr('src', 'images/dracula.jpg');
-                    break;
-                default:
-                    console.log('Could not update thumbnail', currentFilmId);
-                    break;
-            }
-        },
-
-        updateStatus: function(display) {
+        updateStatus: function() {
             //Update title and status
-            var filmNum = display != undefined ? (display ? ++displayFilmNum : --displayFilmNum) : currentFilmNum;
-            if(displayFilmNum < 0) filmNum = displayFilmNum = TOTAL_FILMS -1;
-            if(displayFilmNum >= TOTAL_FILMS) filmNum = displayFilmNum = 0;
-            if(filmNum == currentFilmNum) displayFilmNum = currentFilmNum;
-            if(filmNum != null) {
-                var record = filmRecords[filmNum];
-                $('#filmName').html(record['name']);
-                $('#filmStatus').html(record['status']);
-            } else {
-                console.log('No current film ', filmNum);
+            if(currentFilmNum == null) return;
+
+            //Turn off all status leds
+            var leds = ['mainStatusLiveLED', 'mainStatusWaitLED', 'mainStatusEndedLED'];
+            var ledImagesOff = ['GreenOff.png', 'AmberOff.png', 'RedOff.png'];
+            var ledImagesOn = ['GreenOn.png', 'AmberOn.png', 'RedOn.png'];
+            var image;
+            for(var i=0; i<leds.length; ++i) {
+                image = $('#'+leds[i]);
+                if(image) {
+                    image.attr('src', 'images/'+ledImagesOff[i]);
+                }
             }
+            //Update film status
+            var status = filmStatus[currentFilmNum];
+            image = $('#'+leds[status]);
+            image.attr('src', 'images/'+ledImagesOn[status]);
         },
 
         updateTwitter: function() {
@@ -193,30 +198,23 @@ $(document).ready(function() {
     //Set everything up
     films.setupFilms();
 
-    $('.filmList li').addClass('noHighlight');
-
-    //Highlighting
-    $('.filmList li').on('click', function(evt) {
-        //films.highlightFilm(evt.currentTarget.id);
-        films.updateSynopsis();
-        films.updateThumbnail();
-        films.updateStatus();
-        films.updateTwitter();
-    });
-
-    $('#upArrow').on('click', function(evt) {
-        films.updateStatus(false);
-    });
-
-    $('#downArrow').on('click', function(evt) {
-        films.updateStatus(true);
-    });
-
     //Select first film
-    $('#film1').trigger('click');
+    films.highlightFilm('film1');
+    films.updateSynopsis();
+    films.updateSelectedFilm();
+    films.updateStatus();
+
+    $('.pushButton img').on('click', function(evt) {
+        console.log('clicked');
+        films.removeCurrentHighlight();
+        var film = films.updateFilm();
+        films.highlightFilm(film);
+        films.updateSynopsis();
+        films.updateSelectedFilm();
+        films.updateStatus();
+    });
 
     //Set up visualisation
-
     var container = document.getElementById("WebGL-Output");
     var app = new Horror();
     app.init(container);
