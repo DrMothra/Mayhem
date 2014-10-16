@@ -131,6 +131,11 @@ var films = (function() {
     };
 })();
 
+var brainData = (function() {
+    //Brain zones
+    var brainZones = ['AF3', 'FC5', 'F7', 'F3', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4'];
+})();
+
 function updateClock() {
     //Get current time
     var date = new Date();
@@ -177,6 +182,8 @@ Horror.prototype.createScene = function() {
     var planeMat = new THREE.MeshBasicMaterial( {map: texture, transparent: true, opacity: 0.5});
     var gridMesh = new THREE.Mesh(plane, planeMat);
     gridMesh.scale.set(1.0, 0.95, 1.0);
+    gridMesh.position.x = 2.5;
+    gridMesh.position.y = 10;
     gridMesh.position.z = -175;
     gridMesh.name = 'sight';
     //Add this to camera
@@ -219,8 +226,9 @@ Horror.prototype.update = function update() {
     this.hoverObjects = raycaster.intersectObjects(this.scene.children, true);
 
     //Check hover actions
-    if(this.hoverObjects.length != 0) {
-        console.log('Hit something =', this.hoverObjects[1].name);
+    $('#visCat').html('nothing');
+    if(this.hoverObjects.length >= 2) {
+        $('#visCat').html(this.hoverObjects[1].object.name);
     }
 
     //Rotate brain model

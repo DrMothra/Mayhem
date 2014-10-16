@@ -581,10 +581,17 @@ body {
 #allBadges {
     margin-top: 3%;
 }
+#activeZone {
+    height: 6em;
+    position: relative;
+}
 #vertBar {
     background: #a1ff2f;
-    height: 4em;
-    vertical-align: bottom;
+    height: 60%;
+    width: 90%;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
 }
 #vertBar2 {
     width: 5%;
@@ -593,5 +600,5 @@ body {
     height: 2em;
 }
 .chart {
-    padding: 10% 5% 5% 5%;
+    padding: 0%;
 }
