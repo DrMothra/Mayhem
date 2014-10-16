@@ -312,7 +312,12 @@ body {
 .filmList li {
     line-height: 125%;
 }
-
+#film1name {
+    white-space: nowrap;
+    width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .rightAlign {
     float: right;
 }
@@ -362,9 +367,18 @@ body {
     padding-left: 15%;
 }
 #relativeContent {
+    position: relative;
+    height: 7em;
     margin-bottom: 1%;
 }
-
+#barAF3 {
+    position: absolute;
+    bottom: 3%;
+    left: 4.5%;
+    width: 6%;
+    height: 0%;
+    background: #a1ff2f;
+}
 .hide {
     overflow: hidden;
 }
@@ -585,7 +599,7 @@ body {
     height: 6em;
     position: relative;
 }
-#vertBar {
+#demoBar {
     background: #a1ff2f;
     height: 60%;
     width: 90%;
@@ -598,7 +612,4 @@ body {
     height: 25%;
     background: #a1ff2f;
     height: 2em;
-}
-.chart {
-    padding: 0%;
 }

@@ -133,7 +133,44 @@ var films = (function() {
 
 var brainData = (function() {
     //Brain zones
-    var brainZones = ['AF3', 'FC5', 'F7', 'F3', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4'];
+    var brainZones = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4'];
+    var zoneDescriptions = ["Logical Attention: the rational mind working things out", "Word Generation: necessary for talking",
+        "Verbal Expression: communicating what we're thinking", "Motor Planning: preparing to move the body. Also elevates mood",
+        "Visual Categorisation: putting unknown things into known categories", "Biological Motion: ability to spot living organism",
+        "Visual Exploration: looking around and examining the scene", "Large Line Patterns: making sense in patterns and lines",
+        "Motion Verb: suggested and imagined motion of animate or inanimate objects", "Visual Meaningfulness: making sense of flicking images to be a representation of reality",
+        "Response Competition: managing ambiguity or novelty, demanding confused responses", "Sensorimotor Willed Action: novel physical action requires concentration",
+        "Emotional Expression: communicating what we’re feeling", "Emotional Attention: linking emotions to useful actions. Trust your gut instinct and stay alive!"];
+    var zoneComments = ["pointy teeth, aversion to garlic… I think you’re a…", "VAMPIRE",
+        "darling, I think you’ve turned into a vampire", "and as such, I’d better prepare to run away", "what are you doing with that cheese grater? Sweet Jesus, NO!",
+        "and why has our settee started to behave like a giant mouth", "what the hell is happening to rest my living room!",
+        "Those pot plants bear an uncanny resemblance to little daemons", "what do you mean ‘they’re coming to get me’?",
+        "no I DON’T want to 'go into the light' it’s just a television", "hang on, you’re not a vampire after all, you’re a succubus. Blimey…",
+        "I’d better decapitate you with these nail clippers - must pay attention", "URGHH, this is grotesque", "All quiet… Uh oh, got that spooky feeling again, better run"];
+
+    var brainTextData = [];
+    var brainRecord = {};
+    for(var i=0; i<brainZones.length; ++i) {
+        brainRecord = { zone: brainZones[i], descriptor: zoneDescriptions[i], comment: zoneComments[i]};
+        brainTextData.push(brainRecord);
+    }
+
+    //Public access to these
+    return {
+        getNumZones: function() {
+            return brainZones.length;
+        },
+
+        getBrainData: function() {
+            return brainRecord;
+        },
+
+        getZoneName: function(zone) {
+            if(zone <0 || zone >= brainZones.length) return null;
+
+            return brainZones[zone];
+        }
+    }
 })();
 
 function updateClock() {
@@ -168,6 +205,13 @@ Horror.prototype.init = function(container) {
     //Animation
     this.rotInc = Math.PI/200;
     this.sightVector = new THREE.Vector3(0, 0, 0.5);
+    this.currentLED = null;
+
+    //Subscribe to pubnub
+    this.channel = PubNubBuffer.subscribe("mayhemtony",
+        "sub-c-2eafcf66-c636-11e3-8dcd-02ee2ddab7fe",
+        5000,
+        300);
 
     BaseApp.prototype.init.call(this, container);
 };
@@ -194,18 +238,22 @@ Horror.prototype.createScene = function() {
     this.modelLoader = new THREE.OBJLoader();
     var _this = this;
 
-    //Test objects
-    var sphere = new THREE.SphereGeometry(10);
-    var sphereMat = new THREE.MeshLambertMaterial( {color: 0xff0000});
-    var sphereMesh = new THREE.Mesh(sphere, sphereMat);
-    sphereMesh.name = 'redBall';
-    this.scene.add(sphereMesh);
+    //Create 14 spheres for brain zones
+    var sphere;
+    var sphereMat;
+    var sphereMesh;
+    var xPos = 0;
 
-    sphereMat = new THREE.MeshLambertMaterial( {color: 0x0000ff});
-    sphereMesh = new THREE.Mesh(sphere, sphereMat);
-    sphereMesh.position.x = 40;
-    sphereMesh.name = 'blueBall';
-    this.scene.add(sphereMesh);
+    for(var i=0; i<brainData.getNumZones(); ++i) {
+        sphere = new THREE.SphereGeometry(10);
+        sphereMat = new THREE.MeshLambertMaterial( {color: 0xff0000});
+        sphereMesh = new THREE.Mesh(sphere, sphereMat);
+        sphereMesh.name = brainData.getZoneName(i);
+        sphereMesh.position.x = xPos;
+        this.scene.add(sphereMesh);
+        xPos += 20;
+    }
+
     /*
     this.modelLoader.load( 'models/newBrain.obj', function ( object ) {
 
@@ -216,7 +264,7 @@ Horror.prototype.createScene = function() {
     */
 };
 
-Horror.prototype.update = function update() {
+Horror.prototype.update = function() {
     //See if anything in sight
     this.sightVector.x = this.sightVector.y = 0;
     this.sightVector.z = 0.5;
@@ -226,10 +274,21 @@ Horror.prototype.update = function update() {
     this.hoverObjects = raycaster.intersectObjects(this.scene.children, true);
 
     //Check hover actions
-    $('#visCat').html('nothing');
+    var elem = $('#visCar');
+    elem.html('nothing');
     if(this.hoverObjects.length >= 2) {
-        $('#visCat').html(this.hoverObjects[1].object.name);
+        var name = this.hoverObjects[1].object.name;
+        elem.html(name);
+        //Illuminate led
+        this.updateZoneInfo(name);
+    } else {
+        this.updateZoneInfo(null);
     }
+
+    //Update pubnub data
+    var data = this.channel.getLastValue("raw00") * 90;
+    data = data+'%';
+    $('#barAF3').css('height', data);
 
     //Rotate brain model
     /*
@@ -241,6 +300,15 @@ Horror.prototype.update = function update() {
     BaseApp.prototype.update.call(this);
 };
 
+Horror.prototype.updateZoneInfo = function(name) {
+    //Turn off current led
+    if(this.currentLED != null || name == null) {
+        $('#'+this.currentLED).attr('src', 'images/GreenOff.png');
+    }
+    //Illuminate led
+    this.currentLED = name+'led';
+    $('#'+this.currentLED).attr('src','images/GreenOn.png');
+};
 
 $(document).ready(function() {
     //Update current time (every 30 secs should do)

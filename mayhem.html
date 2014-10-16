@@ -15,6 +15,9 @@
     <script type="text/javascript" src="js/MTLLoader.js"></script>
     <script type="text/javascript" src="js/OBJLoader.js"></script>
 
+    <script type="text/javascript" src="js/pubnub.min.js"></script>
+    <script type="text/javascript" src="js/pubnub_buffer.js"></script>
+
     <script type="text/javascript" src="js/horror.js?v=0.1"></script>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -378,20 +381,20 @@
     <div class="pure-u-4-5">
         <div id="lights" class="led lights">
             <span>
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
-                <img src="images/GreenOff.png">
+                <img id="AF3led" src="images/GreenOff.png">
+                <img id="F7led" src="images/GreenOff.png">
+                <img id="F3led" src="images/GreenOff.png">
+                <img id="FC5led" src="images/GreenOff.png">
+                <img id="T7led" src="images/GreenOff.png">
+                <img id="P7led" src="images/GreenOff.png">
+                <img id="O1led" src="images/GreenOff.png">
+                <img id="O2led" src="images/GreenOff.png">
+                <img id="P8led" src="images/GreenOff.png">
+                <img id="T8led" src="images/GreenOff.png">
+                <img id="FC6led" src="images/GreenOff.png">
+                <img id="F4led" src="images/GreenOff.png">
+                <img id="F8led" src="images/GreenOff.png">
+                <img id="AF4led" src="images/GreenOff.png">
             </span>
         </div>
     </div>
@@ -483,7 +486,7 @@
                 </div>
                 <div class="width-1-10">
                     <div id="activeZone" class="chart">
-                        <div id="vertBar">
+                        <div id="demoBar">
 
                         </div>
                     </div>
@@ -526,7 +529,7 @@
     </div>
     <div class="pure-u-4-5">
         <div id="relativeContent" class="darkBackground rounded chart">
-            <div id="vertBar2" class="">
+            <div id="barAF3">
 
             </div>
         </div>
