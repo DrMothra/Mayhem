@@ -45,7 +45,7 @@ BaseApp.prototype.createRenderer = function() {
         // do IE-specific things
         width = window.innerWidth;
     }
-    this.renderer.setSize(width, window.innerHeight*0.5);
+    this.renderer.setSize(width, window.innerHeight);
     this.container.appendChild( this.renderer.domElement );
     var _this = this;
 
@@ -115,10 +115,10 @@ BaseApp.prototype.mouseMoved = function(event) {
 
 BaseApp.prototype.windowResize = function(event) {
     //Handle window resize
-    this.camera.aspect = window.innerHeight / window.innerHeight;
+    this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
 
-    this.renderer.setSize( this.container.clientWidth, window.innerHeight*0.5 );
+    this.renderer.setSize( this.container.clientWidth, window.innerHeight);
     //console.log('Size =', )
 };
 

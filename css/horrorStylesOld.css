@@ -1,0 +1,615 @@
+/* Styles for horror festival */
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'Unibody8ProReg';
+    src: url('../fonts/Unibody8Pro-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'impact_labelregular';
+    src: url('../fonts/Impact_Label.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Impact_Label_Rev';
+    src: url('../fonts/Impact_Label_Reversed.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Main classes */
+body {
+    background-color: #ffffff;
+    color: #82ba05;
+    font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
+    background-image: url('../images/metalMesh.jpg');
+    background-size: 100%;
+    font-size: 1em;
+}
+.darkBackground {
+    background-image: url("../images/background.png");
+    background-size: 7%;
+}
+.pure-g [class *="pure-u"] {
+    font-family: 'Unibody8ProReg';
+}
+.centreWrapper {
+    width: 70%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Additional widths */
+.width-1-10 {
+    width: 10%;
+}
+.width-2-10 {
+    width: 20%;
+}
+.width-3-10 {
+    width: 30%;
+}
+.width-4-10 {
+    width: 40%;
+}
+.width-5-10 {
+    width: 50%;
+}
+.width-6-10 {
+    width: 60%;
+}
+.width-7-10 {
+    width: 70%;
+}
+.width-8-10 {
+    width: 80%;
+}
+.width-9-10 {
+    width: 90%;
+}
+.width-1-20 {
+    width: 5%;
+}
+.width-17-20 {
+    width: 85%;
+}
+.fullWidth {
+    width: 100%;
+}
+
+/* Text stuff */
+.unibody {
+    font-family: 'Unibody8ProReg', Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+}
+.dymo {
+    font-family: 'impact_labelregular', Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+}
+.text {
+    background: #ffffff;
+}
+.blueText {
+    color: #285fff;
+}
+.redText {
+    color: #b10000;
+}
+.blackText {
+    color: #000000;
+}
+.whiteText {
+    color: #ffffff;
+}
+.greenText {
+    color: #006a00;
+}
+.orangeText {
+    color: #fc6a04;
+}
+.centred {
+    text-align: center;
+}
+.fontSmaller {
+    font-size: 0.8em;
+}
+.fontNormal {
+    font-size: 1em;
+}
+.fontMedium {
+    font-size: 1.2em;
+}
+
+/* Rotations */
+.rotate90 {
+    transform-origin: 66.5% 14.5%;
+
+    transform: rotate(-90deg);
+}
+.rotateClock90 {
+    transform-origin: 50% 50%;
+    transform: rotate(90deg);
+}
+.rotateAntiClock90 {
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+.rotateButton {
+    transform-origin: 17.5% 85.9%;
+    transform: rotate(-90deg);
+}
+.rotateStatus {
+    transform: rotate(-20deg);
+}
+.rotateAbout {
+    transform-origin: 70% 76.5%;
+    transform: rotate(-90deg);
+}
+
+/* Padding */
+.paddingSmall {
+    padding-left: 3%;
+}
+.paddingLarge {
+    padding: 10%;
+}
+
+/* Containers */
+.mainContainer {
+    width: 60%;
+}
+.statusContainer {
+    width: 20%;
+}
+.container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.selection {
+    padding-left: 0em;
+}
+
+/* Date */
+#currentTime {
+    padding-left: 10%;
+    padding-right: 1%;
+}
+#day {
+    padding-left: 15%;
+}
+
+/* Buttons */
+.pushButton {
+
+}
+.pushButton img {
+    width: 25%;
+    height: 25%;
+    vertical-align: middle;
+}
+#pushButton1 {
+    padding-top: 180%;
+    padding-left: 5%;
+    margin-right: -175%;
+}
+#pushButton2 {
+    padding-left: 15%;
+    margin-right: -200%;
+
+    transform-origin: 16.9% 50%;
+    transform: rotate(-90deg);
+}
+#pushButton3 {
+    padding-top: 450%;
+    padding-left: 10%;
+    margin-right: -200%;
+
+    transform-origin: 14.2% 92%;
+    transform: rotate(-90deg);
+}
+#pushButton4 {
+    padding-top: 90%;
+    padding-left: 15%;
+    margin-right: -190%;
+
+    transform-origin: 14.2% 77.7%;
+    transform: rotate(-90deg);
+}
+.aboutButton {
+
+}
+.aboutButton img {
+    width: 35%;
+    height: 35%;
+    vertical-align: middle;
+}
+#aboutButton1 {
+    margin-left: -100%;
+    padding-top: 60%;
+}
+#aboutButton2 {
+    margin-left: -70%;
+    padding-top: 300%;
+
+    transform-origin: 70.3% 93%;
+    transform: rotate(-90deg);
+}
+.scheduleButton {
+
+}
+.scheduleButton img {
+    width: 27%;
+    height: 27%;
+    vertical-align: middle;
+}
+#scheduleButton1 {
+    margin-left: -155%;
+
+    transform-origin: 76.2% 50%;
+    transform: rotate(-90deg);
+}
+#scheduleButton2 {
+    padding-top: 30%;
+    margin-left: -165%;
+
+    transform-origin: 77% 60%;
+    transform: rotate(-90deg);
+}
+.brainButton {
+
+}
+.brainButton img {
+    width: 45%;
+    height: 45%;
+    vertical-align: middle;
+}
+#brainButton1 {
+    margin-left: -60%;
+    padding-top: 20%;
+
+    transform-origin: 57% 55%;
+    transform: rotate(-90deg);
+}
+#brainButton2 {
+    margin-left: -60%;
+    padding-top: 10%;
+
+    transform-origin: 62.5% 50%;
+    transform: rotate(-90deg);
+}
+
+/* Timetable */
+.filmList {
+    list-style: none;
+    margin-top: 3%;
+    font-size: 1.1em;
+}
+.filmList li {
+    line-height: 125%;
+}
+#film1name {
+    white-space: nowrap;
+    width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.rightAlign {
+    float: right;
+}
+.rightIndent {
+    padding-right: 7%;
+}
+
+.led img {
+    width: 1em;
+    height: 1em;
+}
+.status {
+    margin-right: 2px;
+}
+.grid img {
+    margin-bottom: 2px;
+    margin-right: 4px;
+}
+.lights img {
+    margin: 0 1.5%;
+}
+#lights {
+    padding-left: 5%;
+}
+.rounded {
+    border-radius: 10px;
+}
+.smallRounded {
+    border-radius: 5px;
+}
+.lightLabels {
+    display: inline;
+}
+.zones {
+    display: inline-block;
+    padding: 0 1.05%;
+}
+#zoneContainer {
+    margin-left: 4%;
+    margin-bottom: 2%;
+}
+#zoneContainer2 {
+    margin-left: 4%;
+    margin-bottom: 2%;
+}
+#zoneId {
+    padding-left: 15%;
+}
+#relativeContent {
+    position: relative;
+    height: 7em;
+    margin-bottom: 1%;
+}
+#barAF3 {
+    position: absolute;
+    bottom: 3%;
+    left: 4.5%;
+    width: 6%;
+    height: 0%;
+    background: #a1ff2f;
+}
+.hide {
+    overflow: hidden;
+}
+#duality {
+    width: 60%;
+    height: 45%;
+    padding-left: 3%;
+}
+.boltIt {
+    padding-left: 55%;
+}
+.boltHead {
+    width: 25px;
+    height: 25px;
+}
+.greenFill {
+    background: #006a00;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+.orangeFill {
+    background: #fc6a04;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+.redFill {
+    background: #b10000;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+#mayhemLogo {
+    width: 40%;
+    height: 80%;
+    padding-top: 3%;
+}
+#selectedContainer {
+    margin-bottom: 0.35%;
+}
+#selected {
+    padding-left: 1%;
+}
+#selectedTitleContainer {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+#selectedTitle {
+    padding: 0 40% 0 1%;
+}
+#dates {
+    float: right;
+    margin-right: 3%;
+}
+#listings {
+    margin-left: 15%;
+}
+#synopsis {
+    padding: 2% 5%;
+    margin-bottom: 1.5%;
+    margin-right: 2%;
+}
+#synopsisText {
+    line-height: 125%;
+}
+#synopsisContainer {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2%;
+    margin-bottom: 1.75%;
+}
+#synopsisLabel {
+    float: right;
+    margin-right: 3%;
+}
+.shiftLeft {
+    margin-left: -250%;
+}
+#longLabelGreen {
+    color: #006a00;
+}
+#longLabelOrange {
+    color: #fc6a04;
+}
+#longLabelRed {
+    color: #b10000;
+}
+.rotateLabels {
+    transform-origin: 77% 30%;
+    transform: rotate(-90deg);
+}
+#labelEnded {
+    padding-left: 42%;
+}
+.longLabel {
+    padding-left: 50%;
+}
+#topTitle {
+    margin-bottom: 1%;
+}
+#statusLabel {
+    margin-bottom: 30%
+}
+#selectedStatus {
+    margin-left: 5%;
+}
+#timeTitle {
+    padding-top: 1%;
+}
+#timeTable {
+    padding-right: 1.5%;
+    padding-bottom: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+#labelContainer {
+    margin-top: 2%;
+}
+#twitterLabel {
+    padding-left: 3%;
+}
+#twitterContent {
+    height: 10em;
+    padding: 0 1%;
+    margin-bottom: 1%;
+}
+#brainLabel {
+    margin-bottom: 1%;
+}
+#WebGL-Output {
+    overflow: hidden;
+}
+#describeLabel {
+    margin-top: 2%;
+}
+#describeContainer {
+    margin-bottom: 2%;
+}
+#brainSchedule {
+    margin-left: 5%;
+    width: 75%;
+    height: 50%;
+}
+#scheduleBrain {
+    display: block;
+    margin-left: 5%;
+    width: 75%;
+    height: 60%;
+}
+#activityLabel {
+    padding-left: 3%;
+}
+#aboutLabel {
+    margin-left: 5%;
+}
+#aboutLabelContainer {
+    margin-bottom: 2%;
+}
+/* Bottom blue text */
+#bottomLabel1,
+#bottomLabel5 {
+    margin-bottom: 1%;
+    margin-left: 7%;
+    transform: rotate(-2deg);
+}
+#bottomLabel2,
+#bottomLabel6 {
+    margin-bottom: 2%;
+    margin-left: 2%;
+    transform: rotate(-2deg);
+}
+#bottomLabel3,
+#bottomLabel7 {
+    margin-bottom: 5%;
+    margin-left: 7%;
+    transform: rotate(-3deg);
+}
+#bottomLabel4,
+#bottomLabel8 {
+    margin-bottom: 5%;
+    margin-left: 3%;
+    transform: rotate(2deg);
+}
+#badge1 {
+    width: 240%;
+}
+#badgeContainer1 {
+    margin-left: 70%;
+
+    transform-origin: 95% 50%;
+    transform: rotate(-5deg);
+}
+#badge2 {
+    width: 90%;
+}
+#badgeContainer2 {
+    margin-left: 0%;
+
+    transform-origin: 45% 55%;
+    transform: rotate(-55deg);
+}
+#badge3 {
+    width: 65%;
+    height: 40%;
+}
+#badgeContainer3 {
+    margin-left: -30%;
+
+    transform-origin: 30% 55%;
+    transform: rotate(-5deg);
+}
+#badge4 {
+    width: 65%;
+    height: 75%;
+}
+#allBadges {
+    margin-top: 3%;
+}
+#activeZone {
+    height: 6em;
+    position: relative;
+}
+#demoBar {
+    background: #a1ff2f;
+    height: 60%;
+    width: 90%;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+#vertBar2 {
+    width: 5%;
+    height: 25%;
+    background: #a1ff2f;
+    height: 2em;
+}
