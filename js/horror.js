@@ -81,6 +81,11 @@ Horror.prototype.createScene = function() {
     var boxGeom = new THREE.BoxGeometry(2, 2, 2);
     var boxMat = new THREE.MeshBasicMaterial( {color: 0xffffff});
     var box = new THREE.Mesh(boxGeom, boxMat);
+    box.name = 'lightBox';
+    var light = this.scene.getObjectByName('PointLight', true);
+    if(light) {
+        box.position.copy(light.position);
+    }
 
     this.scene.add(box);
 
@@ -221,7 +226,7 @@ Horror.prototype.createGUI = function() {
         this.BrainOpacity = 0.25;
         this.GlowOpacity = 1.0;
         this.RotateSpeed = 0.1;
-
+        this.GenerateData = false;
         //Light Pos
         this.LightX = 200;
         this.LightY = 200;
@@ -243,6 +248,8 @@ Horror.prototype.createGUI = function() {
     gui.add(this.guiControls, 'RotateSpeed', 0, 0.02).onChange(function(value) {
         _this.rotInc = value;
     });
+    gui.add(this.guiControls, 'GenerateData', false);
+
     this.lightPos = gui.addFolder('LightPos');
     this.lightPos.add(this.guiControls, 'LightX', -300, 300).onChange(function(value) {
         _this.changeLightPos(value, -1);
@@ -285,23 +292,28 @@ Horror.prototype.onGlowOpacity = function(value) {
 Horror.prototype.changeLightPos = function(value, axis) {
     //Change light pos
     var light = this.scene.getObjectByName('PointLight', true);
-    if(!light) {
-        console.log('No such light');
+    var box = this.scene.getObjectByName('lightBox', true);
+    if(!light || !box) {
+        console.log('No light or light box');
+        return;
     }
     switch(axis) {
         case -1:
             //X-axis
             light.position.x = value;
+            box.position.x = value;
             break;
 
         case 0:
             //Y-Axis
             light.position.y = value;
+            box.position.y = value;
             break;
 
         case 1:
             //Z-Axis
             light.position.z = value;
+            box.position.z = value;
             break;
 
         default:
@@ -316,12 +328,17 @@ Horror.prototype.update = function() {
     //this.glowRedMat.uniforms.intensity.value =  this.channel.getLastValue("raw00");
 
     //this.glowRedMat.uniforms.intensity.value =  0.4 + (Math.sin(this.glowTime)/2.5);
-    /*
-    for(var i=0; i<this.spriteMats.length; ++i) {
-        this.spriteMats[i].opacity = this.channel.getLastValue(brainData.getZoneName(i));
+    if(this.guiControls.GenerateData) {
+        for(var i=0; i<this.spriteMats.length; ++i) {
+            this.spriteMats[i].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
+        }
     }
-    */
 
+    /*
+     for(var i=0; i<this.spriteMats.length; ++i) {
+     this.spriteMats[i].opacity = this.channel.getLastValue(brainData.getZoneName(i));
+     }
+     */
     this.glowTime += 0.1;
 
     //Rotate brain model
