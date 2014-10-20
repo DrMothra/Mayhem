@@ -130,21 +130,23 @@ BaseApp.prototype.createScene = function() {
 
     /*
     var spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(300, 300, 300);
+    spotLight.position.set(100, 100, 200);
     spotLight.intensity = 1;
     this.scene.add(spotLight);
     */
 
-
-    var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
-    directionalLight.position.set( 0, 0, 1 );
-    this.scene.add( directionalLight );
-
     /*
-    var pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(0,0,-200);
-    this.scene.add(pointLight);
+    var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+    directionalLight.position.set( 1, 1, 1 );
+    this.scene.add( directionalLight );
     */
+
+
+    var pointLight = new THREE.PointLight(0xffffff);
+    pointLight.position.set(200,200,200);
+    pointLight.name = 'PointLight';
+    this.scene.add(pointLight);
+
 };
 
 BaseApp.prototype.createCamera = function() {
