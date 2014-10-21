@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Mayhem Horror</title>
 
-    <script type="text/javascript" src="js/three68.js"></script>
     <script type="text/javascript" src="js/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="js/detector.js"></script>
+    <script type="text/javascript" src="js/three68.js"></script>
     <script type="text/javascript" src="js/TrackballControls.js"></script>
     <script type="text/javascript" src="js/dat.gui.js"></script>
     <script type="text/javascript" src="js/baseApp.js?v=0.1"></script>
@@ -31,10 +32,6 @@
         }
     </script>
 
-
-    <script type="text/javascript" src="js/detector.js"></script>
-
-    <script type="text/javascript" src="js/MTLLoader.js"></script>
     <script type="text/javascript" src="js/OBJLoader.js"></script>
 
     <script type="text/javascript" src="js/pubnub.min.js"></script>
@@ -46,6 +43,23 @@
     <link href="css/horrorStyles.css?v=0.1" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div id="info">
+    <div class="infoPanel">
+        <img src="images/infoGreen.png">
+        <p>
+            The brain visualisation was brought to you by Thrill Lab
+            and Satan, etc, etc.
+        </p>
+    </div>
+
+</div>
+<div id="notSupported" class="hide errorMessage centred">
+    <p>
+        Your browser does not appear to support WebGL.<br>
+        Please update to the latest version of Chrome or Firefox.<br>
+        For iOS users please update to version 8.
+    </p>
+</div>
 <div id="WebGL-Output">
 
 </div>

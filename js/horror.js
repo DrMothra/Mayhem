@@ -61,11 +61,11 @@ Horror.prototype = new BaseApp();
 
 Horror.prototype.init = function(container) {
     //Animation
-    this.rotInc = Math.PI/300;
+    this.rotInc = 0.002;
     this.glowTime = 0;
 
     //Subscribe to pubnub
-    this.channel = PubNubBuffer.subscribe("mayhemtony",
+    this.channel = PubNubBuffer.subscribe("mayhem",
         "sub-c-2eafcf66-c636-11e3-8dcd-02ee2ddab7fe",
         5000,
         300);
@@ -183,16 +183,18 @@ Horror.prototype.createScene = function() {
 
     var texture = THREE.ImageUtils.loadTexture('images/glowRed.png');
 
+    this.sphereScale = 0.5;
     for(var i=0; i<numZones; ++i) {
         sphere = new THREE.SphereGeometry(5, 8, 8);
         //sphereMat = this.glowRedMat;
         sphereMat = new THREE.MeshPhongMaterial( {color: 0xff0000});
         sphereMesh = new THREE.Mesh(sphere, sphereMat);
+        sphereMesh.scale.multiplyScalar(this.sphereScale);
         sphereMesh.name = brainData.getZoneName(i);
         sphereMesh.position.set(zonePositions[i].x, zonePositions[i].y, zonePositions[i].z);
 
         //Add sprite to each mesh
-        spriteMat = new THREE.SpriteMaterial( {map: texture, useScreenCoordinates: false, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending, depthTest: false});
+        spriteMat = new THREE.SpriteMaterial( {map: texture, useScreenCoordinates: false, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthTest: false});
         sprite = new THREE.Sprite(spriteMat);
         this.spriteMats.push(spriteMat);
         sprite.scale.set(100, 100, 1);
@@ -208,7 +210,6 @@ Horror.prototype.createScene = function() {
         //Apply material to object
         //Create shader material
 
-
         object.traverse( function(child) {
             if(child instanceof THREE.Mesh) {
                 child.name = 'brain';
@@ -222,11 +223,12 @@ Horror.prototype.createScene = function() {
 Horror.prototype.createGUI = function() {
     //Create GUI for test dev only
     this.guiControls = new function() {
-        this.SphereSize = 1;
+        this.SphereSize = 0.5;
         this.BrainOpacity = 0.25;
-        this.GlowOpacity = 1.0;
-        this.RotateSpeed = 0.1;
+        this.GlowOpacity = 0.7;
+        this.RotateSpeed = 0.002;
         this.GenerateData = false;
+        this.PubNubData = false;
         //Light Pos
         this.LightX = 200;
         this.LightY = 200;
@@ -248,7 +250,21 @@ Horror.prototype.createGUI = function() {
     gui.add(this.guiControls, 'RotateSpeed', 0, 0.02).onChange(function(value) {
         _this.rotInc = value;
     });
-    gui.add(this.guiControls, 'GenerateData', false);
+    var generateData = gui.add(this.guiControls, 'GenerateData', false).onChange(function(value) {
+        //Ensure no other data generation
+        if(value) {
+            _this.guiControls.PubNubData = false;
+        }
+    });
+    generateData.listen();
+
+    var pubNubData = gui.add(this.guiControls, 'PubNubData', false).onChange(function(value) {
+        //Turn off other data generation
+        if(value) {
+            _this.guiControls.GenerateData = false;
+        }
+    });
+    pubNubData.listen();
 
     this.lightPos = gui.addFolder('LightPos');
     this.lightPos.add(this.guiControls, 'LightX', -300, 300).onChange(function(value) {
@@ -334,11 +350,12 @@ Horror.prototype.update = function() {
         }
     }
 
-    /*
-     for(var i=0; i<this.spriteMats.length; ++i) {
-     this.spriteMats[i].opacity = this.channel.getLastValue(brainData.getZoneName(i));
-     }
-     */
+    if(this.guiControls.PubNubData) {
+        for(var i=0; i<this.spriteMats.length; ++i) {
+            this.spriteMats[i].opacity = this.channel.getLastValue(brainData.getZoneName(i));
+        }
+    }
+
     this.glowTime += 0.1;
 
     //Rotate brain model
@@ -354,11 +371,17 @@ Horror.prototype.update = function() {
 
 $(document).ready(function() {
     //Set up visualisation
-    var container = document.getElementById("WebGL-Output");
-    var app = new Horror();
-    app.init(container);
-    app.createScene();
-    app.createGUI();
+    //See if supported
+    if(!Detector.webgl) {
+        $('#notSupported').show();
+    } else {
+        var container = document.getElementById("WebGL-Output");
+        var app = new Horror();
+        app.init(container);
+        app.createScene();
+        app.createGUI();
 
-    app.run();
+        app.run();
+    }
+
 });

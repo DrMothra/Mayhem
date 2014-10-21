@@ -22,4 +22,36 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
     margin: 0;
     overflow: hidden;
+    background: #000000;
+    color: #285fff;
+}
+#notSupported {
+    width:25%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hide {
+    display: none;
+}
+.errorMessage {
+    margin-top: 20%;
+    padding: 2%;
+    border-radius: 15px;
+    background: #444444;
+}
+.centred {
+    text-align: center;
+}
+#info img {
+    width: 3%;
+    height: 3%;
+}
+.infoPanel {
+    font-size: 1em;
+    font-family: Helvetica;
+    width: 15%;
+    margin: 1%;
+    border-radius: 15px;
+    background: #666666;
+    color: #31a7e0;
 }
