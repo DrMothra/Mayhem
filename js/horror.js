@@ -53,6 +53,8 @@ var brainData = (function() {
 })();
 
 //Init this app from base
+var RANDOM_FIRE_TIME = 1;
+
 function Horror() {
     BaseApp.call(this);
 }
@@ -63,11 +65,13 @@ Horror.prototype.init = function(container) {
     //Animation
     this.rotInc = 0.002;
     this.glowTime = 0;
+    this.delta = 0;
+    this.dataTime = 0;
 
     //Subscribe to pubnub
-    this.channel = PubNubBuffer.subscribe("mayhem",
+    this.channel = PubNubBuffer.subscribe("mayhempaul",
         "sub-c-2eafcf66-c636-11e3-8dcd-02ee2ddab7fe",
-        5000,
+        1000,
         300);
 
     BaseApp.prototype.init.call(this, container);
@@ -105,19 +109,6 @@ Horror.prototype.createScene = function() {
     var sprite;
     var spriteMat;
     this.spriteMats = [];
-
-    this.glowRedMat = new THREE.ShaderMaterial(
-        {
-            uniforms:
-            {
-                "intensity" : { type: "f", value: 1.5 },
-                "glowTexture": { type: "t", value: THREE.ImageUtils.loadTexture("images/glowRed.png") }
-            },
-            vertexShader:   document.getElementById( 'vertexShader'   ).textContent,
-            fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-            transparent: true
-        }
-    );
 
     var zonePositions = [];
     var numZones = brainData.getNumZones();
@@ -208,8 +199,6 @@ Horror.prototype.createScene = function() {
         _this.root.add( object );
         _this.loadedModel = object;
         //Apply material to object
-        //Create shader material
-
         object.traverse( function(child) {
             if(child instanceof THREE.Mesh) {
                 child.name = 'brain';
@@ -227,7 +216,8 @@ Horror.prototype.createGUI = function() {
         this.BrainOpacity = 0.25;
         this.GlowOpacity = 0.7;
         this.RotateSpeed = 0.002;
-        this.GenerateData = false;
+        this.SinewaveData = false;
+        this.RandomData = false;
         this.PubNubData = false;
         //Light Pos
         this.LightX = 200;
@@ -250,18 +240,29 @@ Horror.prototype.createGUI = function() {
     gui.add(this.guiControls, 'RotateSpeed', 0, 0.02).onChange(function(value) {
         _this.rotInc = value;
     });
-    var generateData = gui.add(this.guiControls, 'GenerateData', false).onChange(function(value) {
+    var sineData = gui.add(this.guiControls, 'SinewaveData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
             _this.guiControls.PubNubData = false;
+            _this.guiControls.RandomData = false;
         }
     });
-    generateData.listen();
+    sineData.listen();
+
+    var randomData = gui.add(this.guiControls, 'RandomData', false).onChange(function(value) {
+        //Ensure no other data generation
+        if(value) {
+            _this.guiControls.PubNubData = false;
+            _this.guiControls.SinewaveData = false;
+        }
+    });
+    randomData.listen();
 
     var pubNubData = gui.add(this.guiControls, 'PubNubData', false).onChange(function(value) {
         //Turn off other data generation
         if(value) {
-            _this.guiControls.GenerateData = false;
+            _this.guiControls.SinewaveData = false;
+            _this.guiControls.RandomData = false;
         }
     });
     pubNubData.listen();
@@ -338,13 +339,8 @@ Horror.prototype.changeLightPos = function(value, axis) {
 };
 
 Horror.prototype.update = function() {
-    //Update pubnub data
-    //var data =
-
-    //this.glowRedMat.uniforms.intensity.value =  this.channel.getLastValue("raw00");
-
-    //this.glowRedMat.uniforms.intensity.value =  0.4 + (Math.sin(this.glowTime)/2.5);
-    if(this.guiControls.GenerateData) {
+    //Update data
+    if(this.guiControls.SinewaveData) {
         for(var i=0; i<this.spriteMats.length; ++i) {
             this.spriteMats[i].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
         }
@@ -356,10 +352,20 @@ Horror.prototype.update = function() {
         }
     }
 
+    if(this.guiControls.RandomData) {
+        this.delta = this.clock.getDelta();
+        this.dataTime += this.delta;
+        if(this.dataTime > RANDOM_FIRE_TIME) {
+            this.dataTime = 0;
+            for(var i=0; i<this.spriteMats.length; ++i) {
+                this.spriteMats[i].opacity = Math.random();
+            }
+        }
+    }
+
     this.glowTime += 0.1;
 
     //Rotate brain model
-
     if(this.loadedModel) {
         this.root.rotation.y += this.rotInc
     }
@@ -368,8 +374,27 @@ Horror.prototype.update = function() {
     BaseApp.prototype.update.call(this);
 };
 
+var TRANSITION_TIME = 500;
+function showInfo() {
+    //Hide image icon
+    $('#infoImage').hide(TRANSITION_TIME);
+
+    //Show text panel
+    $('#infoPanel').show(TRANSITION_TIME);
+}
+
+function hideInfo() {
+    //Hide text panel
+    $('#infoPanel').hide(TRANSITION_TIME);
+
+    //Show image icon
+    $('#infoImage').show(TRANSITION_TIME);
+}
 
 $(document).ready(function() {
+    //Sort out video
+    $('#vidContent').fitVids();
+
     //Set up visualisation
     //See if supported
     if(!Detector.webgl) {
@@ -380,6 +405,15 @@ $(document).ready(function() {
         app.init(container);
         app.createScene();
         app.createGUI();
+
+        //Interaction
+        $('#infoImage').on('click', function() {
+            showInfo();
+        });
+
+        $('#close').on('click', function() {
+            hideInfo();
+        });
 
         app.run();
     }

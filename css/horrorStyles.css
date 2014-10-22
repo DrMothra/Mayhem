@@ -30,9 +30,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-.hide {
-    display: none;
-}
+
 .errorMessage {
     margin-top: 20%;
     padding: 2%;
@@ -42,16 +40,35 @@ body {
 .centred {
     text-align: center;
 }
-#info img {
-    width: 3%;
-    height: 3%;
+.hide {
+    display: none;
 }
+#info {
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 1% 0 0 1%;
+}
+#info img {
+    width: 20%;
+    height: 20%;
+}
+
 .infoPanel {
     font-size: 1em;
     font-family: Helvetica;
-    width: 15%;
     margin: 1%;
     border-radius: 15px;
     background: #666666;
     color: #31a7e0;
+}
+.dropDown {
+    padding: 4%;
+}
+#vidContent {
+    margin-top: 4%;
+}
+#close {
+    margin-top: 3%;
 }

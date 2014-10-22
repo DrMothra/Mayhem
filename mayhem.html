@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Mayhem Horror</title>
@@ -11,32 +11,12 @@
     <script type="text/javascript" src="js/dat.gui.js"></script>
     <script type="text/javascript" src="js/baseApp.js?v=0.1"></script>
 
-    <script id="vertexShader" type="x-shader/x-vertex">
-        varying vec2 vUv;
-        void main()
-        {
-            vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-        }
-    </script>
-
-    <script id="fragmentShader" type="x-shader/x-vertex">
-        varying vec2 vUv;
-        uniform float intensity;
-        uniform sampler2D glowTexture;
-        void main()
-        {
-            vec4 tex = texture2D(glowTexture, vUv);
-            gl_FragColor = vec4(tex.r, tex.g, tex.b, tex.a);
-            gl_FragColor.a *= intensity;
-        }
-    </script>
-
     <script type="text/javascript" src="js/OBJLoader.js"></script>
 
     <script type="text/javascript" src="js/pubnub.min.js"></script>
     <script type="text/javascript" src="js/pubnub_buffer.js"></script>
 
+    <script type="text/javascript" src="js/fitvids.js"></script>
     <script type="text/javascript" src="js/horror.js?v=0.1"></script>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -44,13 +24,23 @@
 </head>
 <body>
 <div id="info">
-    <div class="infoPanel">
-        <img src="images/infoGreen.png">
-        <p>
-            The brain visualisation was brought to you by Thrill Lab
-            and Satan, etc, etc.
-        </p>
+    <img id="infoImage" src="images/infoGreen.png">
+    <div id="infoPanel" class="infoPanel hide">
+        <div class="dropDown">
+            <p>
+                The brain visualisation was brought to you by Thrill Lab,
+                Mayhem and the power of Christ compels you, etc, etc. More text, more text.
+            </p>
+            <div id="vidContent">
+                <iframe width="320" height="240" src="http://www.youtube.com/embed/bSxuXQCEC7M"></iframe>
+            </div>
+            <div id="close" class="centred">
+                <span>Close</span>
+            </div>
+        </div>
     </div>
+</div>
+<div id="WebGL-Output">
 
 </div>
 <div id="notSupported" class="hide errorMessage centred">
@@ -60,8 +50,6 @@
         For iOS users please update to version 8.
     </p>
 </div>
-<div id="WebGL-Output">
 
-</div>
 </body>
 </html>
