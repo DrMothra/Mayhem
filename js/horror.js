@@ -54,8 +54,8 @@ var brainData = (function() {
 
 //Init this app from base
 var RANDOM_FIRE_TIME = 1;
-var ALPHA_TRANSITION_TIME = 10;
-var ALPHA_STEADY_TIME = 20;
+var ALPHA_TRANSITION_TIME = 20;
+var ALPHA_STEADY_TIME = 10;
 //Alpha states
 var DOWN=0, OFF=1, UP=2, ON=3;
 
@@ -306,7 +306,6 @@ Horror.prototype.onBrainOpacity = function(value) {
     var brain = this.scene.getObjectByName('brain', true);
     if(brain) {
         brain.material.opacity = value;
-        console.log('Opacity =', value);
     }
 };
 
@@ -400,8 +399,17 @@ Horror.prototype.update = function() {
                 if(this.opacityTime >= ALPHA_TRANSITION_TIME) {
                     this.opacityTime = 0;
                     this.currentAlphaState = ON;
+                    this.brainModel.material.opacity = 1.0;
+                } else {
+                    this.brainModel.material.opacity = this.opacityTime / ALPHA_TRANSITION_TIME;
                 }
-                this.brainModel.material.opacity = this.opacityTime / ALPHA_TRANSITION_TIME;
+                break;
+            case ON:
+                this.opacityTime += this.delta;
+                if(this.opacityTime >= ALPHA_STEADY_TIME) {
+                    this.opacityTime = ALPHA_TRANSITION_TIME;
+                    this.currentAlphaState = DOWN;
+                }
                 break;
         }
     }
