@@ -54,6 +54,10 @@ var brainData = (function() {
 
 //Init this app from base
 var RANDOM_FIRE_TIME = 1;
+var ALPHA_TRANSITION_TIME = 10;
+var ALPHA_STEADY_TIME = 20;
+//Alpha states
+var DOWN=0, OFF=1, UP=2, ON=3;
 
 function Horror() {
     BaseApp.call(this);
@@ -67,6 +71,10 @@ Horror.prototype.init = function(container) {
     this.glowTime = 0;
     this.delta = 0;
     this.dataTime = 0;
+    this.brainModel = null;
+    this.alphaStates = [DOWN, OFF, UP, ON];
+    this.currentAlphaState = DOWN;
+    this.opacityTime = 0;
 
     //Subscribe to pubnub
     this.channel = PubNubBuffer.subscribe("mayhempaul",
@@ -202,6 +210,7 @@ Horror.prototype.createScene = function() {
         object.traverse( function(child) {
             if(child instanceof THREE.Mesh) {
                 child.name = 'brain';
+                _this.brainModel = child;
                 child.material = new THREE.MeshPhongMaterial( { color: 0x00ff00, transparent:true, opacity: 0.25});
             }
         })
@@ -214,6 +223,7 @@ Horror.prototype.createGUI = function() {
     this.guiControls = new function() {
         this.SphereSize = 0.5;
         this.BrainOpacity = 0.25;
+        this.CycleOpacity = false;
         this.GlowOpacity = 0.7;
         this.RotateSpeed = 0.002;
         this.SinewaveData = false;
@@ -234,6 +244,7 @@ Horror.prototype.createGUI = function() {
     gui.add(this.guiControls, 'BrainOpacity', 0, 1).onChange(function(value) {
         _this.onBrainOpacity(value);
     });
+    gui.add(this.guiControls, 'CycleOpacity', false);
     gui.add(this.guiControls, 'GlowOpacity', 0, 1).onChange(function(value) {
         _this.onGlowOpacity(value);
     });
@@ -340,6 +351,8 @@ Horror.prototype.changeLightPos = function(value, axis) {
 
 Horror.prototype.update = function() {
     //Update data
+    this.delta = this.clock.getDelta();
+
     if(this.guiControls.SinewaveData) {
         for(var i=0; i<this.spriteMats.length; ++i) {
             this.spriteMats[i].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
@@ -353,13 +366,43 @@ Horror.prototype.update = function() {
     }
 
     if(this.guiControls.RandomData) {
-        this.delta = this.clock.getDelta();
         this.dataTime += this.delta;
         if(this.dataTime > RANDOM_FIRE_TIME) {
             this.dataTime = 0;
             for(var i=0; i<this.spriteMats.length; ++i) {
                 this.spriteMats[i].opacity = Math.random();
             }
+        }
+    }
+
+    if(this.guiControls.CycleOpacity) {
+        switch(this.currentAlphaState) {
+            case DOWN:
+                if(this.opacityTime == 0) {
+                    this.opacityTime = this.guiControls.BrainOpacity * ALPHA_TRANSITION_TIME;
+                }
+                this.opacityTime -= this.delta;
+                if(this.opacityTime <= 0){
+                    this.opacityTime = 0;
+                    this.currentAlphaState = OFF;
+                }
+                this.brainModel.material.opacity = this.opacityTime / ALPHA_TRANSITION_TIME;
+                break;
+            case OFF:
+                this.opacityTime += this.delta;
+                if(this.opacityTime >= ALPHA_STEADY_TIME) {
+                    this.opacityTime = 0;
+                    this.currentAlphaState = UP;
+                }
+                break;
+            case UP:
+                this.opacityTime += this.delta;
+                if(this.opacityTime >= ALPHA_TRANSITION_TIME) {
+                    this.opacityTime = 0;
+                    this.currentAlphaState = ON;
+                }
+                this.brainModel.material.opacity = this.opacityTime / ALPHA_TRANSITION_TIME;
+                break;
         }
     }
 
