@@ -428,18 +428,18 @@ Horror.prototype.update = function() {
 var TRANSITION_TIME = 500;
 function showInfo() {
     //Hide image icon
-    $('#infoImage').hide(TRANSITION_TIME);
+    $('#infoTitle').hide();
 
     //Show text panel
-    $('#infoPanel').show(TRANSITION_TIME);
+    $('#infoContent').slideDown();
 }
 
 function hideInfo() {
     //Hide text panel
-    $('#infoPanel').hide(TRANSITION_TIME);
+    $('#infoContent').slideUp();
 
     //Show image icon
-    $('#infoImage').show(TRANSITION_TIME);
+    $('#infoTitle').slideDown();
 }
 
 $(document).ready(function() {
@@ -458,7 +458,7 @@ $(document).ready(function() {
         app.createGUI();
 
         //Interaction
-        $('#infoImage').on('click', function() {
+        $('#infoTitle').on('click', function() {
             showInfo();
         });
 

@@ -48,27 +48,34 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    margin: 1% 0 0 1%;
 }
-#info img {
-    width: 20%;
-    height: 20%;
-}
-
 .infoPanel {
-    font-size: 1em;
-    font-family: Helvetica;
-    margin: 1%;
-    border-radius: 15px;
-    background: #666666;
-    color: #31a7e0;
+    font-size: 0.75em;
+    font-family: 'Lucida Grande', sans-serif;
+    margin: 0%;
+    background: #000000;
+    color: #ffffff;
 }
 .dropDown {
     padding: 4%;
+}
+#dropDownTitle {
+    margin-bottom: 3%;
 }
 #vidContent {
     margin-top: 4%;
 }
 #close {
+    padding-top: 1%;
     margin-top: 3%;
+    border-top: 1px solid #333333;
+}
+#closeBar:hover {
+    background: #303030;
+}
+.blueText {
+    color: #2fa1d6;
+}
+.darkBackground {
+    background: #303030;
 }

@@ -24,18 +24,23 @@
 </head>
 <body>
 <div id="info">
-    <img id="infoImage" src="images/infoGreen.png">
-    <div id="infoPanel" class="infoPanel hide">
-        <div class="dropDown">
+    <div class="infoPanel">
+        <div id="infoTitle" class="centred">
+            <span>Open Info</span>
+        </div>
+        <div id="infoContent" class="dropDown hide">
+            <div id="dropDownTitle" class="centred blueText">
+                <span class="darkBackground">Title goes here</span>
+            </div>
             <p>
-                The brain visualisation was brought to you by Thrill Lab,
+                SphereSize The brain visualisation was brought to you by Thrill Lab,
                 Mayhem and the power of Christ compels you, etc, etc. More text, more text.
             </p>
             <div id="vidContent">
                 <iframe width="320" height="240" src="http://www.youtube.com/embed/bSxuXQCEC7M?enablejsapi=1"></iframe>
             </div>
             <div id="close" class="centred">
-                <span>Close</span>
+                <span id="closeBar">Close Info</span>
             </div>
         </div>
     </div>
