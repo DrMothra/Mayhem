@@ -440,11 +440,34 @@ function hideInfo() {
 
     //Show image icon
     $('#infoTitle').slideDown();
+
+    //Stop video playing
+    player.pauseVideo();
+}
+
+var player;
+function onYouTubePlayerAPIReady() {
+    //Create global player
+    player = new YT.Player('mayhemVid', {
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    console.log('YouTube vid ready');
 }
 
 $(document).ready(function() {
     //Sort out video
     $('#vidContent').fitVids();
+
+    //Load YouTube API
+    var tag = document.createElement('script');
+    tag.src = "//www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     //Set up visualisation
     //See if supported

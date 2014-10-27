@@ -88,6 +88,15 @@ body {
 .darkBackground {
     background: #303030;
 }
-#thrillLink {
-    float: right;
+#links {
+    margin-top: 3%;
+    padding-left: 5%;
 }
+#links a:link,
+#links a:visited,
+#links a:link
+{
+    color: #ffffff;
+    text-decoration: none;
+}
+
