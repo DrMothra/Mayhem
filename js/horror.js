@@ -425,6 +425,23 @@ Horror.prototype.update = function() {
     BaseApp.prototype.update.call(this);
 };
 
+Horror.prototype.keydown = function(event) {
+    //Do any key processing
+    switch(event.keyCode) {
+        case 72: //H
+            var elem = $('#info');
+            if(elem.is(':visible')) {
+                elem.hide();
+            } else {
+                elem.show();
+            }
+            break;
+
+        default :
+            break;
+    }
+};
+
 var TRANSITION_TIME = 500;
 function showInfo() {
     //Hide image icon
@@ -487,6 +504,10 @@ $(document).ready(function() {
 
         $('#close').on('click', function() {
             hideInfo();
+        });
+
+        $(document).keydown(function(event) {
+            app.keydown(event);
         });
 
         app.run();

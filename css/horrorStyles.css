@@ -88,15 +88,15 @@ body {
 .darkBackground {
     background: #303030;
 }
-#links {
-    margin-top: 3%;
-    padding-left: 5%;
+#links a:link {
+    color: #2fa1d6;
+    text-decoration: none;
 }
-#links a:link,
 #links a:visited,
-#links a:link
+#links a:hover,
+#links a:active
 {
-    color: #ffffff;
+    color: gray;
     text-decoration: none;
 }
 
