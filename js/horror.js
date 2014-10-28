@@ -75,9 +75,10 @@ Horror.prototype.init = function(container) {
     this.alphaStates = [DOWN, OFF, UP, ON];
     this.currentAlphaState = DOWN;
     this.opacityTime = 0;
+    this.brainTime = 0;
 
     //Subscribe to pubnub
-    this.channel = PubNubBuffer.subscribe("mayhempaul",
+    this.channel = PubNubBuffer.subscribe("mayhemtony",
         "sub-c-2eafcf66-c636-11e3-8dcd-02ee2ddab7fe",
         1000,
         300);
@@ -228,7 +229,7 @@ Horror.prototype.createGUI = function() {
         this.RotateSpeed = 0.002;
         this.SinewaveData = false;
         this.RandomData = false;
-        this.PubNubData = false;
+        this.LiveData = true;
         //Light Pos
         this.LightX = 200;
         this.LightY = 200;
@@ -254,7 +255,7 @@ Horror.prototype.createGUI = function() {
     var sineData = gui.add(this.guiControls, 'SinewaveData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
-            _this.guiControls.PubNubData = false;
+            _this.guiControls.LiveData = false;
             _this.guiControls.RandomData = false;
         }
     });
@@ -263,20 +264,20 @@ Horror.prototype.createGUI = function() {
     var randomData = gui.add(this.guiControls, 'RandomData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
-            _this.guiControls.PubNubData = false;
+            _this.guiControls.LiveData = false;
             _this.guiControls.SinewaveData = false;
         }
     });
     randomData.listen();
 
-    var pubNubData = gui.add(this.guiControls, 'PubNubData', false).onChange(function(value) {
+    var liveData = gui.add(this.guiControls, 'LiveData', false).onChange(function(value) {
         //Turn off other data generation
         if(value) {
             _this.guiControls.SinewaveData = false;
             _this.guiControls.RandomData = false;
         }
     });
-    pubNubData.listen();
+    liveData.listen();
 
     this.lightPos = gui.addFolder('LightPos');
     this.lightPos.add(this.guiControls, 'LightX', -300, 300).onChange(function(value) {
@@ -358,9 +359,21 @@ Horror.prototype.update = function() {
         }
     }
 
-    if(this.guiControls.PubNubData) {
+    if(this.guiControls.LiveData) {
+        this.brainTime += this.delta;
         for(var i=0; i<this.spriteMats.length; ++i) {
-            this.spriteMats[i].opacity = this.channel.getLastValue(brainData.getZoneName(i));
+            this.lastData = this.channel.getLastValue(brainData.getZoneName(i));
+            this.receivedData = this.lastData != undefined;
+            if(this.receivedData) {
+                this.spriteMats[i].opacity = this.lastData;
+                this.brainTime = 0;
+            } else {
+                if(this.brainTime >= 5) {
+                    this.guiControls.SinewaveData = true;
+                    this.guiControls.LiveData = false;
+                    this.brainTime = 0;
+                }
+            }
         }
     }
 
