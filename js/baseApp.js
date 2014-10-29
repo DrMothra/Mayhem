@@ -180,18 +180,14 @@ BaseApp.prototype.update = function() {
     this.controls.update();
 };
 
-BaseApp.prototype.run = function(timestamp) {
-    //Calculate elapsed time
-    if (this.startTime === null) {
-        this.startTime = timestamp;
-    }
-    this.elapsedTime = timestamp - this.startTime;
-
+BaseApp.prototype.run = function() {
     this.renderer.render( this.scene, this.camera );
     var self = this;
     this.update();
     if(this.stats) this.stats.update();
-    requestAnimationFrame(function(timestamp) { self.run(timestamp); });
+    requestAnimationFrame(function() {
+        self.run();
+    });
 };
 
 function initStats() {

@@ -354,11 +354,12 @@ Horror.prototype.changeLightPos = function(value, axis) {
 Horror.prototype.update = function() {
     //Update data
     this.delta = this.clock.getDelta();
+    var mats = null;
 
     if(this.guiControls.SinewaveData) {
         this.updateDataFeed(false);
-        for(var i=0; i<this.spriteMats.length; ++i) {
-            this.spriteMats[i].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
+        for(mats=0; mats<this.spriteMats.length; ++mats) {
+            this.spriteMats[mats].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
         }
     }
 
@@ -366,11 +367,11 @@ Horror.prototype.update = function() {
         if(this.startUpCheck) {
             this.brainTime += this.delta;
         }
-        for(var i=0; i<this.spriteMats.length; ++i) {
-            this.lastData = this.channel.getLastValue(brainData.getZoneName(i));
+        for(mats=0; mats<this.spriteMats.length; ++mats) {
+            this.lastData = this.channel.getLastValue(brainData.getZoneName(mats));
             this.receivedData = this.lastData != undefined;
             if(this.receivedData) {
-                this.spriteMats[i].opacity = this.lastData;
+                this.spriteMats[mats].opacity = this.lastData;
                 this.brainTime = 0;
                 this.startUpCheck = false;
             } else {
@@ -391,8 +392,8 @@ Horror.prototype.update = function() {
         this.dataTime += this.delta;
         if(this.dataTime > RANDOM_FIRE_TIME) {
             this.dataTime = 0;
-            for(var i=0; i<this.spriteMats.length; ++i) {
-                this.spriteMats[i].opacity = Math.random();
+            for(mats=0; mats<this.spriteMats.length; ++mats) {
+                this.spriteMats[mats].opacity = Math.random();
             }
         }
     }
@@ -441,7 +442,7 @@ Horror.prototype.update = function() {
 
     //Rotate brain model
     if(this.loadedModel) {
-        this.root.rotation.y += this.rotInc
+        this.root.rotation.y += this.rotInc;
     }
 
 
@@ -451,9 +452,10 @@ Horror.prototype.update = function() {
 Horror.prototype.updateDataFeed = function(gotData) {
     var liveElem = $('#liveData');
     var replayElem = $('#replayData');
+    var elem = $('#info');
     this.liveData = this.channel.getLastValue('Live') == 2;
 
-    if(this.liveData == undefined || !gotData) {
+    if(this.liveData == undefined || !gotData || !elem.is(':visible')) {
         liveElem.hide();
         replayElem.hide();
         return;
