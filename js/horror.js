@@ -58,6 +58,7 @@ var ALPHA_TRANSITION_TIME = 20;
 var ALPHA_STEADY_TIME = 10;
 //Alpha states
 var DOWN=0, OFF=1, UP=2, ON=3;
+var guiLabelElem = null;
 
 function Horror() {
     BaseApp.call(this);
@@ -230,7 +231,7 @@ Horror.prototype.createGUI = function() {
         this.RotateSpeed = 0.002;
         this.SinewaveData = false;
         this.RandomData = false;
-        this.LiveData = true;
+        this.NeuroData = true;
         //Light Pos
         this.LightX = 200;
         this.LightY = 200;
@@ -256,7 +257,7 @@ Horror.prototype.createGUI = function() {
     var sineData = gui.add(this.guiControls, 'SinewaveData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
-            _this.guiControls.LiveData = false;
+            _this.guiControls.NeuroData = false;
             _this.guiControls.RandomData = false;
         }
     });
@@ -265,20 +266,20 @@ Horror.prototype.createGUI = function() {
     var randomData = gui.add(this.guiControls, 'RandomData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
-            _this.guiControls.LiveData = false;
+            _this.guiControls.NeuroData = false;
             _this.guiControls.SinewaveData = false;
         }
     });
     randomData.listen();
 
-    var liveData = gui.add(this.guiControls, 'LiveData', false).onChange(function(value) {
+    var NeuroData = gui.add(this.guiControls, 'NeuroData', false).onChange(function(value) {
         //Turn off other data generation
         if(value) {
             _this.guiControls.SinewaveData = false;
             _this.guiControls.RandomData = false;
         }
     });
-    liveData.listen();
+    NeuroData.listen();
 
     this.lightPos = gui.addFolder('LightPos');
     this.lightPos.add(this.guiControls, 'LightX', -300, 300).onChange(function(value) {
@@ -355,12 +356,13 @@ Horror.prototype.update = function() {
     this.delta = this.clock.getDelta();
 
     if(this.guiControls.SinewaveData) {
+        this.updateDataFeed(false);
         for(var i=0; i<this.spriteMats.length; ++i) {
             this.spriteMats[i].opacity = (Math.sin(this.glowTime)/2.0) + 0.5;
         }
     }
 
-    if(this.guiControls.LiveData) {
+    if(this.guiControls.NeuroData) {
         if(this.startUpCheck) {
             this.brainTime += this.delta;
         }
@@ -374,15 +376,18 @@ Horror.prototype.update = function() {
             } else {
                 if(this.brainTime >= 5 && this.startUpCheck) {
                     this.guiControls.SinewaveData = true;
-                    this.guiControls.LiveData = false;
+                    this.guiControls.NeuroData = false;
                     this.brainTime = 0;
                     this.startUpCheck = false;
                 }
             }
         }
+        //See if this is replaying or live
+        this.updateDataFeed(this.receivedData);
     }
 
     if(this.guiControls.RandomData) {
+        this.updateDataFeed(false);
         this.dataTime += this.delta;
         if(this.dataTime > RANDOM_FIRE_TIME) {
             this.dataTime = 0;
@@ -441,6 +446,25 @@ Horror.prototype.update = function() {
 
 
     BaseApp.prototype.update.call(this);
+};
+
+Horror.prototype.updateDataFeed = function(gotData) {
+    var liveElem = $('#liveData');
+    var replayElem = $('#replayData');
+    this.liveData = this.channel.getLastValue('Live') == 2;
+
+    if(this.liveData == undefined || !gotData) {
+        liveElem.hide();
+        replayElem.hide();
+        return;
+    }
+    if(this.liveData) {
+        liveElem.show();
+        replayElem.hide();
+    } else {
+        liveElem.hide();
+        replayElem.show();
+    }
 };
 
 Horror.prototype.keydown = function(event) {
