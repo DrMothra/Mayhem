@@ -76,9 +76,10 @@ Horror.prototype.init = function(container) {
     this.currentAlphaState = DOWN;
     this.opacityTime = 0;
     this.brainTime = 0;
+    this.startUpCheck = true;
 
     //Subscribe to pubnub
-    this.channel = PubNubBuffer.subscribe("mayhemtony",
+    this.channel = PubNubBuffer.subscribe("mayhempaul",
         "sub-c-2eafcf66-c636-11e3-8dcd-02ee2ddab7fe",
         1000,
         300);
@@ -360,18 +361,22 @@ Horror.prototype.update = function() {
     }
 
     if(this.guiControls.LiveData) {
-        this.brainTime += this.delta;
+        if(this.startUpCheck) {
+            this.brainTime += this.delta;
+        }
         for(var i=0; i<this.spriteMats.length; ++i) {
             this.lastData = this.channel.getLastValue(brainData.getZoneName(i));
             this.receivedData = this.lastData != undefined;
             if(this.receivedData) {
                 this.spriteMats[i].opacity = this.lastData;
                 this.brainTime = 0;
+                this.startUpCheck = false;
             } else {
-                if(this.brainTime >= 5) {
+                if(this.brainTime >= 5 && this.startUpCheck) {
                     this.guiControls.SinewaveData = true;
                     this.guiControls.LiveData = false;
                     this.brainTime = 0;
+                    this.startUpCheck = false;
                 }
             }
         }
