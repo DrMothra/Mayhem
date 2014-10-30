@@ -239,22 +239,23 @@ Horror.prototype.createGUI = function() {
     };
 
     //Create GUI
-    var gui = new dat.GUI();
+    this.gui = new dat.GUI();
+
     var _this = this;
-    gui.add(this.guiControls, 'SphereSize', 0.1, 2).onChange(function(value) {
+    this.gui.add(this.guiControls, 'SphereSize', 0.1, 2).onChange(function(value) {
         _this.onSphereChange(value);
     });
-    gui.add(this.guiControls, 'BrainOpacity', 0, 1).onChange(function(value) {
+    this.gui.add(this.guiControls, 'BrainOpacity', 0, 1).onChange(function(value) {
         _this.onBrainOpacity(value);
     });
-    gui.add(this.guiControls, 'CycleOpacity', false);
-    gui.add(this.guiControls, 'GlowOpacity', 0, 1).onChange(function(value) {
+    this.gui.add(this.guiControls, 'CycleOpacity', false);
+    this.gui.add(this.guiControls, 'GlowOpacity', 0, 1).onChange(function(value) {
         _this.onGlowOpacity(value);
     });
-    gui.add(this.guiControls, 'RotateSpeed', 0, 0.02).onChange(function(value) {
+    this.gui.add(this.guiControls, 'RotateSpeed', 0, 0.02).onChange(function(value) {
         _this.rotInc = value;
     });
-    var sineData = gui.add(this.guiControls, 'SinewaveData', false).onChange(function(value) {
+    var sineData = this.gui.add(this.guiControls, 'SinewaveData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
             _this.guiControls.NeuroData = false;
@@ -263,7 +264,7 @@ Horror.prototype.createGUI = function() {
     });
     sineData.listen();
 
-    var randomData = gui.add(this.guiControls, 'RandomData', false).onChange(function(value) {
+    var randomData = this.gui.add(this.guiControls, 'RandomData', false).onChange(function(value) {
         //Ensure no other data generation
         if(value) {
             _this.guiControls.NeuroData = false;
@@ -272,7 +273,7 @@ Horror.prototype.createGUI = function() {
     });
     randomData.listen();
 
-    var NeuroData = gui.add(this.guiControls, 'NeuroData', false).onChange(function(value) {
+    var NeuroData = this.gui.add(this.guiControls, 'NeuroData', false).onChange(function(value) {
         //Turn off other data generation
         if(value) {
             _this.guiControls.SinewaveData = false;
@@ -281,7 +282,7 @@ Horror.prototype.createGUI = function() {
     });
     NeuroData.listen();
 
-    this.lightPos = gui.addFolder('LightPos');
+    this.lightPos = this.gui.addFolder('LightPos');
     this.lightPos.add(this.guiControls, 'LightX', -300, 300).onChange(function(value) {
         _this.changeLightPos(value, -1);
     });
@@ -455,7 +456,7 @@ Horror.prototype.updateDataFeed = function(gotData) {
     var elem = $('#info');
     this.liveData = this.channel.getLastValue('Live') == 2;
 
-    if(this.liveData == undefined || !gotData || !elem.is(':visible')) {
+    if(!elem.is(':visible') || this.gui.closed) {
         liveElem.hide();
         replayElem.hide();
         return;
@@ -476,8 +477,10 @@ Horror.prototype.keydown = function(event) {
             var elem = $('#info');
             if(elem.is(':visible')) {
                 elem.hide();
+                this.brainControlsVisible = false;
             } else {
                 elem.show();
+                this.brainControlsVisible = true;
             }
             break;
 
