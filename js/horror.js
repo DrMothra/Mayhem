@@ -477,10 +477,8 @@ Horror.prototype.keydown = function(event) {
             var elem = $('#info');
             if(elem.is(':visible')) {
                 elem.hide();
-                this.brainControlsVisible = false;
             } else {
                 elem.show();
-                this.brainControlsVisible = true;
             }
             break;
 
@@ -489,7 +487,6 @@ Horror.prototype.keydown = function(event) {
     }
 };
 
-var TRANSITION_TIME = 500;
 function showInfo() {
     //Hide image icon
     $('#infoTitle').hide();
