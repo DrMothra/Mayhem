@@ -49,9 +49,11 @@ body {
 }
 #info {
     width: 65%;
-    position: fixed;
+    height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
+    overflow: auto;
 }
 .infoPanel {
     font-size: 0.75em;
