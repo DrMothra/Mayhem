@@ -48,7 +48,7 @@ body {
     display: none;
 }
 #info {
-    width: 35%;
+    width: 65%;
     position: fixed;
     top: 0;
     left: 0;
@@ -62,6 +62,7 @@ body {
 }
 #infoTitle {
     cursor: pointer;
+    margin-left: 5%;
 }
 .dropDown {
     padding: 4%;

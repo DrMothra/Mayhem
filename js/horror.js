@@ -239,7 +239,10 @@ Horror.prototype.createGUI = function() {
     };
 
     //Create GUI
-    this.gui = new dat.GUI();
+    this.gui = new dat.GUI( { width: 50} );
+    this.gui.close();
+    dat.GUI.toggleHide();
+    $('#guiOverlay').hide();
 
     var _this = this;
     this.gui.add(this.guiControls, 'SphereSize', 0.1, 2).onChange(function(value) {

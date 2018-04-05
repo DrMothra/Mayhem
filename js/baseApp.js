@@ -23,9 +23,9 @@ function BaseApp() {
 
 BaseApp.prototype.init = function(container) {
     this.container = container;
-    console.log("BaseApp container =", container);
+    //console.log("BaseApp container =", container);
     this.createRenderer();
-    console.log("BaseApp renderer =", this.renderer);
+    //console.log("BaseApp renderer =", this.renderer);
     this.createCamera();
     this.createControls();
     this.projector = new THREE.Projector();
@@ -152,9 +152,9 @@ BaseApp.prototype.createScene = function() {
 BaseApp.prototype.createCamera = function() {
 
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 5000 );
-    this.camera.position.set(0, 0, 400 );
+    this.camera.position.set(0, 0, 500 );
 
-    console.log('dom =', this.renderer.domElement);
+    //.log('dom =', this.renderer.domElement);
 };
 
 BaseApp.prototype.createControls = function() {
