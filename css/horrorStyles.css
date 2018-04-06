@@ -120,21 +120,36 @@ body {
 #replayData {
     color: #2fa1d6;
 }
+#vidContent {
+    width: 220px;
+    height: 160px;
+}
 /* Media queries */
 @media (min-width: 576px) {
     #infoTitle span {
         font-size: 1rem;
     }
+    #vidContent {
+        width: 340px;
+        height: 200px;
+    }
 }
 
 @media (min-width: 768px) {
     #info {
-        width: 50%;
+        width: 35%;
     }
 }
 
 @media (min-width: 768px) and (orientation: portrait) {
     #infoTitle span {
         font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    #vidContent {
+        width: 600px;
+        height: 400px;
     }
 }
