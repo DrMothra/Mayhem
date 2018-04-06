@@ -56,7 +56,6 @@ body {
     overflow: auto;
 }
 .infoPanel {
-    font-size: 0.75em;
     font-family: 'Lucida Grande', sans-serif;
     margin: 0%;
     background: #000000;
@@ -65,6 +64,9 @@ body {
 #infoTitle {
     cursor: pointer;
     margin-left: 5%;
+}
+#infoTitle span {
+    font-size: 0.75rem;
 }
 .dropDown {
     padding: 4%;
@@ -117,4 +119,22 @@ body {
 }
 #replayData {
     color: #2fa1d6;
+}
+/* Media queries */
+@media (min-width: 576px) {
+    #infoTitle span {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #info {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) and (orientation: portrait) {
+    #infoTitle span {
+        font-size: 1.25rem;
+    }
 }
