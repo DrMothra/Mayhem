@@ -59,6 +59,8 @@ var ALPHA_STEADY_TIME = 10;
 //Alpha states
 var DOWN=0, OFF=1, UP=2, ON=3;
 var guiLabelElem = null;
+var MIN_GUI_WIDTH = 640;
+var player;
 
 function Horror() {
     BaseApp.call(this);
@@ -239,10 +241,18 @@ Horror.prototype.createGUI = function() {
     };
 
     //Create GUI
-    this.gui = new dat.GUI( { width: 50} );
+    var width = window.innerWidth;
+    var guiWidth = 50;
+    this.guiHidden = true;
+    if(window.innerWidth >= MIN_GUI_WIDTH) {
+        guiWidth = 200;
+        this.guiHidden = false;
+    }
+    this.gui = new dat.GUI( { width: guiWidth} );
     this.gui.close();
-    dat.GUI.toggleHide();
-    $('#guiOverlay').hide();
+    if(this.guiHidden) {
+        dat.GUI.toggleHide();
+    }
 
     var _this = this;
     this.gui.add(this.guiControls, 'SphereSize', 0.1, 2).onChange(function(value) {
@@ -449,7 +459,6 @@ Horror.prototype.update = function() {
         this.root.rotation.y += this.rotInc;
     }
 
-
     BaseApp.prototype.update.call(this);
 };
 
@@ -471,6 +480,24 @@ Horror.prototype.updateDataFeed = function(gotData) {
         liveElem.hide();
         replayElem.show();
     }
+};
+
+Horror.prototype.windowResize = function(event) {
+    var guiWidth = 50, prevState = this.guiHidden;
+    if(window.innerWidth >= MIN_GUI_WIDTH) {
+        guiWidth = 200;
+        this.guiHidden = false;
+    } else {
+        this.guiHidden = true;
+    }
+
+    if(prevState !== this.guiHidden) {
+        dat.GUI.toggleHide();
+    }
+
+    this.gui.width = guiWidth;
+
+    BaseApp.prototype.windowResize.call(this);
 };
 
 Horror.prototype.keydown = function(event) {
@@ -506,10 +533,9 @@ function hideInfo() {
     $('#infoTitle').slideDown();
 
     //Stop video playing
-    player.pauseVideo();
+    //player.pause();
 }
 
-var player;
 function onYouTubePlayerAPIReady() {
     //Create global player
     player = new YT.Player('mayhemVid', {

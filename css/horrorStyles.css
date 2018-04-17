@@ -51,7 +51,7 @@ body {
     width: 65%;
     height: 100%;
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 0;
     overflow: auto;
 }
@@ -129,15 +129,22 @@ body {
     #infoTitle span {
         font-size: 1rem;
     }
+    #info {
+        width: 50%;
+    }
     #vidContent {
-        width: 340px;
+        width: 320px;
         height: 200px;
     }
 }
 
 @media (min-width: 768px) {
     #info {
-        width: 35%;
+        width: 50%;
+    }
+    #vidContent {
+        width: 440px;
+        height: 220px;
     }
 }
 
