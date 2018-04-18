@@ -522,12 +522,15 @@ function showInfo() {
     $('#infoTitle').hide();
 
     //Show text panel
+    $('#info').css("height", "100%");
     $('#infoContent').slideDown();
 }
 
 function hideInfo() {
     //Hide text panel
-    $('#infoContent').slideUp();
+    $('#infoContent').slideUp(400, function() {
+        $('#info').css("height", "10%");
+    });
 
     //Show image icon
     $('#infoTitle').slideDown();
@@ -581,6 +584,11 @@ $(document).ready(function() {
 
         $(document).keydown(function(event) {
             app.keydown(event);
+        });
+
+        //Instructions
+        $('#instructions').on("click", function() {
+            $('#instructionModal').modal();
         });
 
         app.run();
