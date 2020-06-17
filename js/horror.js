@@ -305,6 +305,10 @@ Horror.prototype.createGUI = function() {
     this.lightPos.add(this.guiControls, 'LightZ', -300, 300).onChange(function(value) {
         _this.changeLightPos(value, 1);
     });
+    // Prevent context menu
+    $('.dg').contextmenu(function() {
+        return false;
+    });
 };
 
 Horror.prototype.onSphereChange = function(value) {
@@ -517,6 +521,14 @@ Horror.prototype.keydown = function(event) {
     }
 };
 
+Horror.prototype.stopNotifications = function(elemList) {
+    for(var i=0, numElems=elemList.length; i<numElems; ++i) {
+        $('#' + elemList[i]).contextmenu(function() {
+            return false;
+        });
+    }
+}
+
 function showInfo() {
     //Hide image icon
     $('#infoTitle').hide();
@@ -590,6 +602,9 @@ $(document).ready(function() {
         $('#instructions').on("click", function() {
             $('#instructionModal').modal();
         });
+
+        let elemList = ["infoTitle", "info", "instructions"];
+        app.stopNotifications(elemList);
 
         app.run();
     }

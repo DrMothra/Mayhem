@@ -4,6 +4,8 @@ body {
     overflow: hidden;
     background: #000000;
     color: #285fff;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 #notSupported {
     width:25%;
