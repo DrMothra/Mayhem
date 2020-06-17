@@ -30,6 +30,7 @@
     "pump": "^3.0.0"
   },
   "devDependencies": {
+    "concat": "^1.0.3",
     "terser": "^4.8.0"
   }
 }
